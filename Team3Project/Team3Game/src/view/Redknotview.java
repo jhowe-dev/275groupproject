@@ -1,0 +1,21 @@
+package view;
+
+import java.awt.Color;
+
+import javax.swing.JComponent;
+import javax.swing.border.LineBorder;
+
+public class Redknotview extends JComponent {
+	private volatile int x;
+	private volatile int y;
+	public Redknotview(int x, int y){
+		this.x=x;
+		this.y=y;
+		setLayout(null);
+		setBorder(new LineBorder(Color.RED, 3));
+		setBackground(Color.WHITE);
+		setBounds(0, 225, 100, 100);
+		setOpaque(false);
+	}
+
+}

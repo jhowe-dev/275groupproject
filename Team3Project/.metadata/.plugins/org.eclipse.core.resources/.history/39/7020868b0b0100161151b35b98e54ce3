@@ -1,0 +1,46 @@
+package view;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+
+public class FlyGameView extends View {
+	Trashview[] trashlist=new Trashview[3];
+	boolean start=true;
+	public FlyGameView(){
+		
+	}
+//	public void paint(Graphics g){
+//		
+//	}
+	public void paintTrash(int[][] coordinates){
+		
+		if(start){
+			int q=0;
+			for(int[] i:coordinates){
+				trashlist[q]=new Trashview(i[0],i[1]);
+				Trashview t=new Trashview(i[0],i[1]);
+				frame.add(t);
+				q++;
+			}
+			
+			start=false;
+			frame.setSize(1440, 900);
+	    	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	    	frame.setVisible(true);
+		}
+		else{
+			
+			int q=0;
+			for(int[] i:coordinates){
+				trashlist[q].setcoor(i[0],i[1]);
+				
+				q++;
+				
+			}
+		}
+		//frame.setUndecorated(true);
+		
+	}
+}

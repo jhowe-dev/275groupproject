@@ -1,0 +1,19 @@
+package view;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.JComponent;
+
+public class Trashview extends JComponent {
+	private volatile int x;
+	private volatile int y;
+	public Trashview(int x, int y){
+		this.x=x;
+		this.y=y;
+		setBorder(new LineBorder(Color.BLUE, 3));
+		setBackground(Color.WHITE);
+		setBounds(200*x, 300*y, x, y);
+		setOpaque(false);
+	}
+}

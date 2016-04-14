@@ -1,0 +1,23 @@
+package view;
+
+import java.awt.Color;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
+
+public class Clocker extends View {
+	private volatile int x;
+	private volatile int y;
+	public Clocker(int x, int y){
+		this.x=x;
+		this.y=y;
+		
+		
+	}
+	public void setcoor(int xc, int yc){
+		x=xc;
+		y=yc;
+		setLocation(x,y);
+	}
+}

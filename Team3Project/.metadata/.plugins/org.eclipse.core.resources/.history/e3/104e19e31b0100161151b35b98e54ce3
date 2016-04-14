@@ -1,0 +1,53 @@
+package view;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+public class FlyGameView extends View {
+	Trashview[] trashlist=new Trashview[3];
+	Trashcanview can=new Trashcanview();
+	boolean start=true;
+	public FlyGameView(){
+		
+	}
+//	public void paint(Graphics g){
+//		
+//	}
+	public void paintTrash(ArrayList<ArrayList<Integer>> coordinates){
+		
+		if(start){
+			int q=0;
+			for(ArrayList<Integer> i:coordinates){
+				trashlist[q]=new Trashview(i.get(0),i.get(1));
+				Trashview t=trashlist[q];
+				frame.add(t);
+				q++;
+			}
+			start=false;
+			frame.add(can);
+			frame.setSize(1440, 900);
+	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	frame.setVisible(true);
+		}
+		else{
+			int q=0;
+			for(ArrayList<Integer> i:coordinates){
+				trashlist[q].setcoor(i.get(0),i.get(1));
+				q++;
+			}
+		}
+		//frame.setUndecorated(true);
+		
+	}
+	public void addtoTrash(MouseListener e){
+		for(int i=0;i<3;i++){
+			trashlist[i].addMouseListener(e);;
+		}
+	}
+}

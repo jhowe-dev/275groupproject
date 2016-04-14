@@ -1,0 +1,27 @@
+package view;
+
+import java.awt.Color;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
+
+public class Clocker extends JLabel {
+	private volatile int x;
+	private volatile int y;
+	public Clocker(int x, int y){
+		this.x=x;
+		this.y=y;
+		setLayout(null);
+		setBorder(new LineBorder(Color.YELLOW, 3));
+		setBackground(Color.WHITE);
+		setBounds(1200, 650, 200, 200);
+		setOpaque(false);
+		
+	}
+	public void setcoor(int xc, int yc){
+		x=xc;
+		y=yc;
+		setLocation(x,y);
+	}
+}

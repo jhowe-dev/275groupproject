@@ -1,0 +1,13 @@
+{
+  "C:\\Users\\Matthew\\Team3Project\\Team3Game\\src": {
+    "location": "C:\\Users\\Matthew\\Team3Project\\Team3Game\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\Matthew\\Team3Project\\Team3Game\\src\u0027. Skipped."
+  },
+  "C:\\Program Files\\Java\\jre1.8.0_73\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_73\\lib\\rt.jar",
+    "status": "RESOLVED",
+    "error": "No class path info available for \u0027C:\\Program Files\\Java\\jre1.8.0_73\\lib\\rt.jar\u0027. Skipped."
+  }
+}

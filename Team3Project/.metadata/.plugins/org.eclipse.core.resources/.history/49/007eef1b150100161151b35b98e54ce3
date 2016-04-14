@@ -1,0 +1,9 @@
+package Model;
+
+public class Trash extends Character {
+
+	public Trash(int x, int y) {
+		super(x, y);
+	}
+	
+}

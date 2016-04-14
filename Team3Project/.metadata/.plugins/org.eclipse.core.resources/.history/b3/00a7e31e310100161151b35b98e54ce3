@@ -1,0 +1,60 @@
+package view;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+public class FlyGameView extends View {
+	ArrayList<Trashview> trashlist=new ArrayList<Trashview>();
+	Trashcanview can=new Trashcanview();
+	boolean start=true;
+	public Clocker cl=new Clocker(60);
+	Redknotview red=new Redknotview(100,1220);
+	public void onTick(ArrayList<int []> coordinates){
+		
+		if(start){
+			int q=0;
+			for(int[] i:coordinates){
+				trashlist.add(new Trashview(i[0],i[1]));
+				Trashview t=trashlist.get(q);
+				frame.add(t);
+				q++;
+			}
+			start=false;
+			frame.add(can);
+			frame.add(cl);
+			frame.add(red);
+			frame.setSize(1440, 900);
+	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	frame.setVisible(true);
+		}
+		else{
+			int q=0;
+			for(int[] i:coordinates){
+				trashlist.get(q).setcoor(i[0],i[1]);
+				q++;
+			}
+		}
+		//frame.setUndecorated(true);
+		
+	}
+	public void addTrash(int x, int y){
+		Trashview t=new Trashview(x,y);
+		trashlist.add(t);
+		frame.add(t);
+	}
+	public void removeTrash(int i){
+		frame.remove(trashlist.get(i));
+		trashlist.remove(i);
+		frame.repaint();
+	}
+	public void updatetime(int i){
+		cl.settime(i);
+	}
+	
+}

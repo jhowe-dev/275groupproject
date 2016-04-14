@@ -1,0 +1,145 @@
+package Controller;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+
+import Model.Trash;
+import view.FlyGameView;
+
+public class FlyGameController {
+	FlyGameView a=new FlyGameView();
+	ArrayList<Trash> t=new ArrayList<Trash>();
+	ArrayList<int []> j=new ArrayList<int []>();
+	static int length=3;
+	boolean held=false;
+	ArrayList<Boolean> notheld=new ArrayList<Boolean>();
+	int imgw=100;
+	int imgh=100;
+	private volatile int screenX = 0;
+	private volatile int screenY = 0;
+	private volatile int myX = 0;
+	private volatile int myY = 0;
+	public FlyGameController(){
+		for(int i=0;i<3;i++){
+			t.add(new Trash(1200,200*i));
+			int [] x=new int [2];
+			x[0]=(1200);
+			x[1]=(200*i);
+			j.add(x);
+			notheld.add(true);
+		}
+		a.paintTrash(j);
+		a.frame.addMouseListener(addmousel());
+		a.frame.addMouseMotionListener(addmousem());
+		//a.addtoTrash(addmousel());
+	}
+	public void onTick(){
+		for(int i = 0; i < 1000; i++){
+			try {
+				Thread.sleep(50);
+				} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+				}
+			for(int k=0;k<length;k++){
+				if(notheld.get(k)){
+					t.get(k).move();
+					j.get(k)[0]=t.get(k).x;
+				}
+				else{
+					j.get(k)[0]=t.get(k).x;
+					j.get(k)[1]=t.get(k).y;
+				}
+			}
+			a.paintTrash(j);
+		}
+	}
+	public MouseListener addmousel(){
+		MouseListener l=new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				for(int i=0;i<length;i++){
+					if(t.get(i).x<e.getXOnScreen()&&e.getXOnScreen()<(t.get(i).x+imgw)&&t.get(i).y<e.getYOnScreen()&&e.getYOnScreen()<(t.get(i).y+imgh)){
+						notheld.set(i,false);
+						screenX = e.getXOnScreen();
+				        screenY = e.getYOnScreen();
+				        myX=t.get(i).x;
+				        myY=t.get(i).y;
+				        
+				        i=4;
+					}
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				for(int i=0;i<length;i++){
+					if(!notheld.get(i)){
+						if(50<e.getXOnScreen()&&e.getXOnScreen()<50+150&&650<e.getYOnScreen()&&e.getYOnScreen()<850){
+							t.remove(i);
+							j.remove(i);
+							length--;
+						}
+						else{
+							t.get(i).setcoor(myX, myY);
+							j.get(i)[0]=t.get(i).x;
+							j.get(i)[1]=t.get(i).y;
+						}
+					}
+					notheld.set(i,true);
+				}
+			}
+			
+		};
+		return l;
+	}
+	public MouseMotionListener addmousem(){
+		MouseMotionListener l=new MouseMotionListener(){
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				for(int k=0;k<length;k++){
+					if(!notheld.get(k)){
+						int deltaX = e.getXOnScreen() - screenX;
+				        int deltaY = e.getYOnScreen() - screenY;
+				        t.get(k).setcoor(myX + deltaX, myY + deltaY);
+					}
+				}
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			
+		};
+		return l;
+	}
+	public static void main(String[] args){
+		FlyGameController p=new FlyGameController();
+		p.onTick();
+	}
+}
