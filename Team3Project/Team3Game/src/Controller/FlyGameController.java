@@ -8,8 +8,10 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import Model.RedKnot;
 import Model.Trash;
 import view.FlyGameView;
 
@@ -17,30 +19,35 @@ public class FlyGameController {
 	FlyGameView a=new FlyGameView();
 	ArrayList<Trash> t=new ArrayList<Trash>();
 	ArrayList<int []> j=new ArrayList<int []>();
-	static int length=3;
+	public static double screenwidth=1440;
+	public static double screenheight=900;
+	public static double widthratio=screenwidth/1440;
+	public static double heightratio=screenheight/900;
+	public int length=3;
 	boolean held=false;
 	boolean add=false;
 	int life=7;
 	int time=61;
 	ArrayList<Boolean> notheld=new ArrayList<Boolean>();
-	int imgw=100;
-	int imgh=100;
+	public static int imgw=100;
+	public static int imgh=100;
 	private volatile int screenX = 0;
 	private volatile int screenY = 0;
 	private volatile int myX = 0;
 	private volatile int myY = 0;
 	Random rand=new Random();
+	RedKnot red=new RedKnot(100,(int)(225*heightratio));
 	Timer timer=new Timer(1000,addtime());
 	public FlyGameController(){
 		for(int i=0;i<3;i++){
-			t.add(new Trash(1200,200*i));
+			t.add(new Trash((int)(1200*widthratio),(int)(200*i*heightratio)));
 			int [] x=new int [2];
-			x[0]=(1200);
-			x[1]=(200*i);
+			x[0]=((int)(1200*widthratio));
+			x[1]=((int)(200*i*heightratio));
 			j.add(x);
 			notheld.add(true);
 		}
-		a.onTick(j);
+		a.render(j);
 		a.frame.addMouseListener(addmousel());
 		a.frame.addMouseMotionListener(addmousem());
 	}
@@ -54,38 +61,30 @@ public class FlyGameController {
 			catch (InterruptedException e) {
 				e.printStackTrace();
 				}
+			red.move();
+			a.updatered(red.gety());
 			for(int k=0;k<length;k++){
 				if(notheld.get(k)){
 					t.get(k).move();
-					j.get(k)[0]=t.get(k).x;
+					j.get(k)[0]=t.get(k).getx();
 				}
 				else{
-					j.get(k)[0]=t.get(k).x;
-					j.get(k)[1]=t.get(k).y;
+					j.get(k)[0]=t.get(k).getx();
+					j.get(k)[1]=t.get(k).gety();
 				}
-				if(t.get(k).x<=100&&notheld.get(k)){
-					t.remove(k);
-					j.remove(k);
-					notheld.remove(k);
-					a.removeTrash(k);
+				if(red.istouching(t.get(k))&&notheld.get(k)){
 					life--;
 					a.updatelives(life);
-					length--;
+					removetrash(k);
+				}
+				if(t.get(k).getx()+t.get(k).imgw<=0&&notheld.get(k)){
+					removetrash(k);
 				}
 			}
 			a.updatetime(time);
-			a.onTick(j);
+			a.render(j);
 			if(add&&length<6&&!(time>=60)){
-				int r=rand.nextInt(3);
-				t.add(new Trash(1200,200*r));
-				int [] x=new int [2];
-				x[0]=(1200);
-				x[1]=(200*r);
-				j.add(x);
-				notheld.add(true);
-				a.addTrash(1200,200*r);
-				add=false;
-				length++;
+				addtrash();
 			}
 		}
 		if(life>0){
@@ -123,8 +122,8 @@ public class FlyGameController {
 						notheld.set(i,false);
 						screenX = e.getXOnScreen();
 				        screenY = e.getYOnScreen();
-				        myX=t.get(i).x;
-				        myY=t.get(i).y;
+				        myX=t.get(i).getx();
+				        myY=t.get(i).gety();
 				        
 				        i=length+1;
 					}
@@ -144,8 +143,8 @@ public class FlyGameController {
 						}
 						else{
 							t.get(i).setcoor(myX, myY);
-							j.get(i)[0]=t.get(i).x;
-							j.get(i)[1]=t.get(i).y;
+							j.get(i)[0]=t.get(i).getx();
+							j.get(i)[1]=t.get(i).gety();
 						}
 					}
 					notheld.set(i,true);
@@ -190,6 +189,25 @@ public class FlyGameController {
 			
 		};
 		return(timerListener);
+	}
+	public void addtrash(){
+		int r=rand.nextInt(3);
+		t.add(new Trash((int)(1200*widthratio),(int)(200*r*heightratio)));
+		int [] x=new int [2];
+		x[0]=((int)(1200*widthratio));
+		x[1]=((int)(200*r*heightratio));
+		j.add(x);
+		notheld.add(true);
+		a.addTrash((int)(1200*widthratio),(int)(200*r*heightratio));
+		add=false;
+		length++;
+	}
+	public void removetrash(int index){
+		t.remove(index);
+		j.remove(index);
+		notheld.remove(index);
+		a.removeTrash(index);
+		length--;
 	}
 	public static void main(String[] args){
 		FlyGameController p=new FlyGameController();
