@@ -7,12 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import Controller.FlyGameController;
+
 public class Livesview extends JLabel {
+	public double hratio=FlyGameController.heightratio;
+	public double wratio=FlyGameController.widthratio;
 	public Livesview(int live){
 		setLayout(null);
 		setBorder(new LineBorder(Color.RED, 3));
 		setBackground(Color.WHITE);
-		setBounds(600, 700, 200, 100);
+		setBounds((int)(600*wratio), (int)(700*hratio), (int)(200*wratio), (int)(100*hratio));
 		setOpaque(false);
 		setText(""+live);
 		setHorizontalAlignment(SwingConstants.CENTER);

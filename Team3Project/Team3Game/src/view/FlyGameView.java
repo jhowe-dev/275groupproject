@@ -9,14 +9,20 @@ import javax.swing.JFrame;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import Controller.FlyGameController;
+
 public class FlyGameView extends View {
 	ArrayList<Trashview> trashlist=new ArrayList<Trashview>();
 	Trashcanview can=new Trashcanview();
+	public int imgw=FlyGameController.imgw;
+	public int imgh=FlyGameController.imgh;
+	public double hratio=FlyGameController.heightratio;
+	public double wratio=FlyGameController.widthratio;
 	boolean start=true;
 	Livesview lv=new Livesview(7);
 	public Clocker cl=new Clocker(60);
 	Redknotview red=new Redknotview(100,1220);
-	public void onTick(ArrayList<int []> coordinates){
+	public void render(ArrayList<int []> coordinates){
 		
 		if(start){
 			int q=0;
@@ -31,7 +37,7 @@ public class FlyGameView extends View {
 			frame.add(cl);
 			frame.add(red);
 			frame.add(lv);
-			frame.setSize(1440, 900);
+			frame.setSize((int)(1440*wratio), (int)(900*hratio));
 	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	frame.setVisible(true);
 		}
@@ -60,6 +66,9 @@ public class FlyGameView extends View {
 	}
 	public void updatelives(int i){
 		lv.setlive(i);
+	}
+	public void updatered(int i){
+		red.sety(i);
 	}
 	
 }

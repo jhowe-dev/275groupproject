@@ -5,16 +5,16 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.border.LineBorder;
 
+import Controller.FlyGameController;
+
 public class Trashcanview extends JComponent {
-	private volatile int x;
-	private volatile int y;
+	public double hratio=FlyGameController.heightratio;
+	public double wratio=FlyGameController.widthratio;
 	public Trashcanview(){
-		this.x=x;
-		this.y=y;
 		setLayout(null);
 		setBorder(new LineBorder(Color.GREEN, 3));
 		setBackground(Color.WHITE);
-		setBounds(50, 650, 150, 200);
+		setBounds((int)(50*wratio), (int)(650*hratio), (int)(150*wratio), (int)(200*hratio));
 		setOpaque(false);
 	}
 }
