@@ -12,16 +12,16 @@ import javax.swing.SwingConstants;
 import Controller.FlyGameController;
 
 public class FlyGameView extends View {
-	ArrayList<Trashview> trashlist=new ArrayList<Trashview>();
-	Trashcanview can=new Trashcanview();
+	private ArrayList<Trashview> trashlist=new ArrayList<Trashview>();
+	private Trashcanview can=new Trashcanview();
 	public int imgw=FlyGameController.imgw;
 	public int imgh=FlyGameController.imgh;
 	public double hratio=FlyGameController.heightratio;
 	public double wratio=FlyGameController.widthratio;
-	boolean start=true;
-	Livesview lv=new Livesview(7);
-	public Clocker cl=new Clocker(60);
-	Redknotview red=new Redknotview(100,1220);
+	private boolean start=true;
+	private Livesview lifepic=new Livesview(7);
+	private Clocker cl=new Clocker(60);
+	private Redknotview red=new Redknotview(100,1220);
 	public void render(ArrayList<int []> coordinates){
 		
 		if(start){
@@ -36,9 +36,10 @@ public class FlyGameView extends View {
 			frame.add(can);
 			frame.add(cl);
 			frame.add(red);
-			frame.add(lv);
+			frame.add(lifepic);
 			frame.setSize((int)(1440*wratio), (int)(900*hratio));
 	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	//frame.setUndecorated(true);
 	    	frame.setVisible(true);
 		}
 		else{
@@ -56,19 +57,19 @@ public class FlyGameView extends View {
 		trashlist.add(t);
 		frame.add(t);
 	}
-	public void removeTrash(int i){
-		frame.remove(trashlist.get(i));
-		trashlist.remove(i);
+	public void removeTrash(int index){
+		frame.remove(trashlist.get(index));
+		trashlist.remove(index);
 		frame.repaint();
 	}
-	public void updatetime(int i){
-		cl.settime(i);
+	public void updateTime(int time){
+		cl.setTime(time);
 	}
-	public void updatelives(int i){
-		lv.setlive(i);
+	public void updateLives(int lives){
+		lifepic.setlive(lives);
 	}
-	public void updatered(int i){
-		red.sety(i);
+	public void updateRed(int yPosition){
+		red.sety(yPosition);
 	}
 	
 }

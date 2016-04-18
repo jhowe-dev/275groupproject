@@ -8,6 +8,6 @@ public abstract class Character {
 		this.y=y;
 	}
 	public void move(){
-		x-=10;
+		
 	}
 }
