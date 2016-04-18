@@ -50,19 +50,37 @@ public class MainView extends JFrame {
 		layeredPane.add(menu);
 		
 		
-		JButton btnGame = new JButton("Redknot Game");
-		btnGame.addActionListener(new ActionListener() {
+		JButton birdGame = new JButton("Redknot Game");
+		birdGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addflyGame();
 				layeredPane.setLayer(menu, 0);
 				layeredPane.setLayer(view, 1);
 			}
 		});
-		menu.add(btnGame);
+		menu.add(birdGame);
+		
+		JButton plantGame = new JButton("Plant Game");
+		plantGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addflyGame();
+				layeredPane.setLayer(menu, 0);
+				layeredPane.setLayer(view, 1);
+			}
+		});
+		menu.add(plantGame);
+		
+		JButton scienceGame = new JButton("Scientist Game");
+		scienceGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addflyGame();
+				layeredPane.setLayer(menu, 0);
+				layeredPane.setLayer(view, 1);
+			}
+		});
+		menu.add(scienceGame);
+		
 		layeredPane.setVisible(true);
-		
-		
-    	
     	
     }
     
@@ -75,6 +93,10 @@ public class MainView extends JFrame {
     	layeredPane.setLayer(view, 0);
     	layeredPane.add(view);
     	setVisible(true);
+    }
+    
+    public void showMenu() {
+    	layeredPane.setLayer(menu, 100);
     }
 
 }

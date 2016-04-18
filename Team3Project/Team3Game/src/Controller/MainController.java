@@ -14,6 +14,7 @@ public class MainController {
 		//frame.addflyGame();
 		frame.setVisible(true);
 		flygame.onTick();
+		frame.showMenu();
 	}
 	
 
