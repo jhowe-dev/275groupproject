@@ -16,7 +16,7 @@ import Model.Trash;
 import view.FlyGameView;
 
 public class FlyGameController {
-	FlyGameView a=new FlyGameView();
+	public FlyGameView a=new FlyGameView();
 	ArrayList<Trash> t=new ArrayList<Trash>();
 	ArrayList<int []> j=new ArrayList<int []>();
 	public static double screenwidth=1440;
@@ -46,10 +46,11 @@ public class FlyGameController {
 			x[1]=((int)(200*i*heightratio));
 			j.add(x);
 			notheld.add(true);
+			System.out.println(x);
 		}
 		a.render(j);
-		a.frame.addMouseListener(addmousel());
-		a.frame.addMouseMotionListener(addmousem());
+		a.addMouseListener(addmousel());
+		a.addMouseMotionListener(addmousem());
 	}
 	public void onTick(){
 		timer.setInitialDelay(0);
@@ -63,7 +64,7 @@ public class FlyGameController {
 				}
 			red.move();
 			a.updatered(red.gety());
-			for(int k=0;k<length;k++){
+			for(int k = 0; k < length; k++){
 				if(notheld.get(k)){
 					t.get(k).move();
 					j.get(k)[0]=t.get(k).getx();

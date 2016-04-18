@@ -15,10 +15,8 @@ import javax.swing.JPanel;
 public abstract class View extends JPanel {
 	final static int frameWidth = 900;
     final static int frameHeight = 1440;
-    public JFrame frame;
 	public View(){
-		frame = new JFrame("Fly Game");
-		frame.setLayout(null);
+		setLayout(null);
 	}
 //	public void paint(Graphics g){
 //		

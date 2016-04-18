@@ -29,17 +29,16 @@ public class FlyGameView extends View {
 			for(int[] i:coordinates){
 				trashlist.add(new Trashview(i[0],i[1]));
 				Trashview t=trashlist.get(q);
-				frame.add(t);
+				add(t);
 				q++;
 			}
 			start=false;
-			frame.add(can);
-			frame.add(cl);
-			frame.add(red);
-			frame.add(lv);
-			frame.setSize((int)(1440*wratio), (int)(900*hratio));
-	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    	frame.setVisible(true);
+			add(can);
+			add(cl);
+			add(red);
+			add(lv);
+			setSize((int)(1440*wratio), (int)(900*hratio));
+	    	setVisible(true);
 		}
 		else{
 			int q=0;
@@ -54,12 +53,12 @@ public class FlyGameView extends View {
 	public void addTrash(int x, int y){
 		Trashview t=new Trashview(x,y);
 		trashlist.add(t);
-		frame.add(t);
+		add(t);
 	}
 	public void removeTrash(int i){
-		frame.remove(trashlist.get(i));
+		remove(trashlist.get(i));
 		trashlist.remove(i);
-		frame.repaint();
+		repaint();
 	}
 	public void updatetime(int i){
 		cl.settime(i);
