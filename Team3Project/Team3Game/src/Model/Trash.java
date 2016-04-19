@@ -3,8 +3,8 @@ package Model;
 import Controller.FlyGameController;
 
 public class Trash extends Character {
-	public int imgw=FlyGameController.imgw;
-	public int imgh=FlyGameController.imgh;
+	public int imgw=(int)(FlyGameController.imgw*FlyGameController.widthratio);
+	public int imgh=(int)(FlyGameController.imgh*FlyGameController.heightratio);
 	public Trash(int x, int y) {
 		super(x, y);
 	}
@@ -17,6 +17,18 @@ public class Trash extends Character {
 	}
 	public int gety(){
 		return y;
+	}
+	public int getXAdjusted(){
+		return x+imgw;
+	}
+	public int getYAdjusted(){
+		return y+imgh;
+	}
+	public void move(){
+		x-=10;
+	}
+	public boolean isGrabbed(int mouseX, int mouseY){
+		return(x<=mouseX&&mouseX<=getXAdjusted()&&y<=mouseY-30&&mouseY-30<=getYAdjusted());
 	}
 	
 }
