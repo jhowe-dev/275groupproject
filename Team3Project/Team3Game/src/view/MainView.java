@@ -86,7 +86,7 @@ public class MainView extends JFrame {
     
     public void addflyGame() {
     	// FlyGameController game = new FlyGameController();
-    	view = game.a;
+    	view = game.flyGameViewer;
     	view.setLayout(null);
     	view.setSize((int) frameHeight, (int) frameWidth);
     	view.setBounds(0, 0, 1440, 900);

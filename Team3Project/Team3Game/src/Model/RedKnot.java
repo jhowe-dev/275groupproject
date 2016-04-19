@@ -5,27 +5,29 @@ import java.util.Random;
 import Controller.FlyGameController;
 
 public class RedKnot extends Character {
-	public int imgw=FlyGameController.imgw;
-	public int imgh=FlyGameController.imgh;
-	Random rand=new Random();
-	boolean start=false;
-	boolean up;
+	public int imgw=(int)(FlyGameController.imgw*FlyGameController.widthratio);
+	public int imgh=(int)(FlyGameController.imgh*FlyGameController.heightratio);
+	private Random rand=new Random();
+	public boolean start=false;
+	public boolean up;
+	public int randstart;
 	int endpoint;
 	public RedKnot(int x, int y) {
 		super(x, y);
+		randstart=rand.nextInt(2);
 		endpoint=(int)((400)*FlyGameController.heightratio);
 		// TODO Auto-generated constructor stub
 	}
-	public boolean istouching(Trash t){
-		boolean ytestoutter=(t.gety()<=(y+imgh)||(t.gety()+t.imgh<=(y+imgh)));
-		boolean ytestinner=(t.gety()>=y||(t.gety()+t.imgh)>=y);
-		boolean xtestoutter=(t.getx()<=x+imgw||(t.getx()+t.imgw)<=x+imgw);
-		boolean xtestinner=(t.getx()>=(x)||(t.getx()+t.imgw)>=(x));
+	public boolean isTouching(Trash t){
+		boolean ytestoutter=(t.gety()<=(y+imgh)||(t.getYAdjusted()<=(y+imgh)));
+		boolean ytestinner=(t.gety()>=y||(t.getYAdjusted())>=y);
+		boolean xtestoutter=(t.getx()<=x+imgw||(t.getXAdjusted())<=x+imgw);
+		boolean xtestinner=(t.getx()>=(x)||(t.getXAdjusted())>=(x));
 		return(ytestinner&&xtestinner&&ytestoutter&&xtestoutter);
 	}
 	public void move(){
 		if(!start){
-			if(rand.nextInt(2)==1){
+			if(randstart==1){
 				up=true;
 			}
 			else{
