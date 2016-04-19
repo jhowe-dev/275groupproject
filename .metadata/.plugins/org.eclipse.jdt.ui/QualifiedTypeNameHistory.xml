@@ -4,8 +4,8 @@
 <fullyQualifiedTypeName name="Controller.ScientistGameController"/>
 <fullyQualifiedTypeName name="View.ScientistGameView"/>
 <fullyQualifiedTypeName name="view.BossFight1View"/>
-<fullyQualifiedTypeName name="Model.EmployeeHero"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
-<fullyQualifiedTypeName name="Controller.BossFight1Controller"/>
 <fullyQualifiedTypeName name="Model.Boss"/>
+<fullyQualifiedTypeName name="Controller.BossFight1Controller"/>
+<fullyQualifiedTypeName name="Model.EmployeeHero"/>
 </qualifiedTypeNameHistroy>
