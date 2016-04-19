@@ -1,0 +1,15 @@
+package view;
+
+import Controller.FlyGameController;
+
+public class BossFight1View extends View{
+	public MonsterView boss = new MonsterView();
+	public EmployeeHeroView hero = new EmployeeHeroView();
+	
+	//using this code for now even though it's bad
+	public int imgw=FlyGameController.imgw;
+	public int imgh=FlyGameController.imgh;
+	public double hratio=FlyGameController.heightratio;
+	public double wratio=FlyGameController.widthratio;
+	
+}

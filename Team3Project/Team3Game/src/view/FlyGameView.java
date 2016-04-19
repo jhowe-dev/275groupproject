@@ -19,7 +19,7 @@ public class FlyGameView extends View {
 	public double hratio=FlyGameController.heightratio;
 	public double wratio=FlyGameController.widthratio;
 	boolean start=true;
-	Livesview lv=new Livesview(7);
+	Livesview lifepic=new Livesview(7);
 	public Clocker cl=new Clocker(60);
 	Redknotview red=new Redknotview(100,1220);
 	public void render(ArrayList<int []> coordinates){
@@ -36,7 +36,7 @@ public class FlyGameView extends View {
 			add(can);
 			add(cl);
 			add(red);
-			add(lv);
+			add(lifepic);
 			setSize((int)(1440*wratio), (int)(900*hratio));
 	    	setVisible(true);
 		}
@@ -55,19 +55,19 @@ public class FlyGameView extends View {
 		trashlist.add(t);
 		add(t);
 	}
-	public void removeTrash(int i){
-		remove(trashlist.get(i));
-		trashlist.remove(i);
+	public void removeTrash(int index){
+		remove(trashlist.get(index));
+		trashlist.remove(index);
 		repaint();
 	}
-	public void updatetime(int i){
-		cl.settime(i);
+	public void updateTime(int time){
+		cl.setTime(time);
 	}
-	public void updatelives(int i){
-		lv.setlive(i);
+	public void updateLives(int lives){
+		lifepic.setlive(lives);
 	}
-	public void updatered(int i){
-		red.sety(i);
+	public void updateRed(int yPosition){
+		red.sety(yPosition);
 	}
 	
 }

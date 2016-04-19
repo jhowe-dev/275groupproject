@@ -56,7 +56,7 @@ public class ScientistGameView extends View {
 		repaint();
 	}
 	public void updatetime(int i){
-		cl.settime(i);
+		cl.setTime(i);
 	}
 	public void updatelives(int i){
 		lv.setlive(i);

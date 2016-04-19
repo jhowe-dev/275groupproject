@@ -29,7 +29,7 @@ public class Clocker extends JLabel {
 	    
 	}
 	
-	public void settime(int time){
+	public void setTime(int time){
 		setText(""+time);
 	}
 }
