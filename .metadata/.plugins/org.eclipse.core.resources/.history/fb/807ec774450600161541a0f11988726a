@@ -1,0 +1,8 @@
+package Controller;
+
+import view.BossFight1View;
+
+public class BossFight1Controller {
+	public BossFight1View view = new BossFight1View();
+	public Boss boss = new Boss();
+}

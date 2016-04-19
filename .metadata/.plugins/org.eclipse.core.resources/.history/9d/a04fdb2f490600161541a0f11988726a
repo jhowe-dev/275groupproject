@@ -1,0 +1,8 @@
+package view;
+
+public class BossFight1View extends View{
+	public MonsterView boss = new MonsterView();
+	public EmployeeHeroView hero = new EmployeeHeroView();
+	
+	
+}
