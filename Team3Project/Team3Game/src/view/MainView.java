@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controller.FlyGameController;
+import Controller.ScientistGameController;
 
 public class MainView extends JFrame {
 	final static int frameWidth = 900;
@@ -21,7 +22,7 @@ public class MainView extends JFrame {
     private JPanel menu;
     private JPanel view;
     private JLayeredPane layeredPane; 
-    private FlyGameController game;
+    private ScientistGameController game;
     volatile boolean start=false;
     
     
@@ -37,7 +38,7 @@ public class MainView extends JFrame {
     	setVisible(true);
     }
     
-    public void addMenu(FlyGameController agame) {
+    public void addMenu(ScientistGameController agame) {
     	this.game = agame;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -90,7 +91,7 @@ public class MainView extends JFrame {
     public void addflyGame() {
     	// FlyGameController game = new FlyGameController();
     
-    	view = game.flyGameViewer;
+    	view = game.scientistGameViewer;
     	view.setLayout(null);
     	view.setSize((int) frameHeight, (int) frameWidth);
     	view.setBounds(0, 0, 1440, 900);

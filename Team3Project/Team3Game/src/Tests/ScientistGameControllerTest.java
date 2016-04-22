@@ -14,11 +14,7 @@ public class ScientistGameControllerTest {
 
 	@Test
 	public void test() {
-		ScientistGameController hey = new ScientistGameController();
-		hey.onTick();
-		MouseListener one = hey.addmousel();
-		MouseMotionListener two = hey.addmousem();
-		ActionListener three = hey.addtime();
+
 		
 	}
 

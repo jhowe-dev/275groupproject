@@ -1,0 +1,14 @@
+package Model;
+
+public class RiverItem extends Character {
+	int type;
+	int index;
+	public RiverItem(int x, int y,int type,int index) {
+		super(x, y);
+		this.type=type;
+		this.index=index;
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

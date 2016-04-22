@@ -1,0 +1,29 @@
+package view;
+
+import java.awt.Color;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+import Controller.FlyGameController;
+
+public class ToolTableView extends JPanel{
+	private volatile int x;
+	private volatile int y;
+	public double hratio=FlyGameController.heightratio;
+	public double wratio=FlyGameController.widthratio;
+
+	
+	public ToolTableView(int x, int y){
+		this.x=x;
+		this.y=y;
+		setLayout(null);
+		setBorder(new LineBorder(Color.ORANGE, 3));
+		setBackground(Color.WHITE);
+		setBounds((int)(x*wratio), (int)(y*hratio), (int)(400*wratio), (int)(200*hratio));
+		setOpaque(false);
+
+	}
+}

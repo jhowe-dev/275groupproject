@@ -1,0 +1,80 @@
+package view;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import Controller.FlyGameController;
+
+public class ScientistGameView extends View {
+	ArrayList<FisherManView> fishermen=new ArrayList<FisherManView>();
+	ArrayList<FishView> fishes=new ArrayList<FishView>();
+	ArrayList<Trashview> trashes=new ArrayList<Trashview>();
+	ArrayList<LiquidView> liquids=new ArrayList<LiquidView>();
+	ToolButtonView ticket=new ToolButtonView("Ticket",0,0);
+	ToolButtonView vile=new ToolButtonView("vile",1,0);
+	ToolButtonView bin=new ToolButtonView("bin",0,1);
+	ToolButtonView tag=new ToolButtonView("tag",1,1);
+	HorseshoeCrabView h=new HorseshoeCrabView(670,200);
+	ToolTableView t=new ToolTableView(520,0);
+	Riverview r=new Riverview();
+	Livesview lifepic=new Livesview(7);
+	public Clocker cl=new Clocker(61);
+	Redknotview red=new Redknotview(100,1220);
+	public ScientistGameView(){
+		setLayout(null);
+		setSize((int) 1440, (int) 900);
+		ticket.setBackground(Color.RED);
+		vile.setBackground(Color.MAGENTA);
+		bin.setBackground(Color.GREEN);
+		tag.setBackground(Color.ORANGE);
+		add(h);
+		add(t);
+		add(ticket);
+		add(bin);
+		add(vile);
+		add(tag);
+		add(r);
+		setVisible(true);
+		  //setExtendedState(JMAXIMIZED_BOTH); 
+		 // setUndecorated(true);
+		
+	}
+	public void addFisherman(int x,MouseListener listen){
+		FisherManView fishman=new FisherManView(x,350);
+		fishermen.add(fishman);
+		fishman.addMouseListener(listen);
+	}
+	public void addFish(int x,int y, MouseListener listen){
+		FishView fish=new FishView(x,y);
+		fishes.add(fish);
+		fish.addMouseListener(listen);
+	}
+	public void addTrash(int x,int y,MouseListener listen){
+		Trashview trash=new Trashview(x,y);
+		trashes.add(trash);
+		trash.addMouseListener(listen);
+	}
+	public void addLiquid(int x,int y,MouseListener listen){
+		LiquidView liquid=new LiquidView(x,y);
+		liquids.add(liquid);
+		liquid.addMouseListener(listen);
+	}
+	public void removeFisherman(int index){
+		fishermen.remove(index);
+	}
+	public void removeFish(int index){
+		fishes.remove(index);
+	}
+	public void removeTrash(int index){
+		trashes.remove(index);
+	}
+	public void removeremoveFisherman(int index){
+		liquids.remove(index);
+	}
+}

@@ -1,0 +1,22 @@
+package view;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class viewtester {
+	
+	public static void main(String[] args) {
+		JFrame frame=new JFrame("Fly Game");
+    	frame.setLayout(null);
+    	frame.setSize((int) 1440, (int) 900);
+    	  //setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    	 // setUndecorated(true);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	
+    	HorseshoeCrabView h=new HorseshoeCrabView(670,200);
+    	ToolTableView t=new ToolTableView(200,400);
+    	frame.add(h);
+    	frame.add(t);
+    	frame.setVisible(true);
+	}
+}
