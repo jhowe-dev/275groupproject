@@ -11,10 +11,9 @@ public class MainController {
 		FlyGameController flygame = new FlyGameController();
 		MainView frame = new MainView(); 
 		frame.addMenu(flygame);
-		//frame.addflyGame();
-		frame.setVisible(true);
+		while(!frame.canI()){}
 		flygame.onTick();
-		frame.showMenu();
+//		frame.showMenu();
 	}
 	
 

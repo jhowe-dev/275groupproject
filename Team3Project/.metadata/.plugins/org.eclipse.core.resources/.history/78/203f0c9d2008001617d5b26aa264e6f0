@@ -1,0 +1,32 @@
+package Controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import view.MainView;
+
+public class MainController {
+	
+	
+	
+	
+	public static void main(String[] args) {
+		final FlyGameController flygame = new FlyGameController();
+		final MainView frame = new MainView(); 
+		frame.addMenu(flygame);
+		//frame.addflyGame();
+		frame.setVisible(true);
+		//flygame.onTick();
+		ActionListener a=new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				flygame.onTick();
+				frame.addflyGame();
+				frame.setLayer();
+			}
+		};
+		frame.addBirdButton(a);
+		frame.showMenu();
+	}
+	
+
+}

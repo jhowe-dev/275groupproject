@@ -1,0 +1,23 @@
+package Controller;
+
+import view.MainView;
+
+public class MainController {
+	
+	
+	
+	
+	public static void main(String[] args) {
+		FlyGameController flygame = new FlyGameController();
+		MainView frame = new MainView(); 
+		frame.addMenu(flygame);
+		while(!frame.canI()){
+			
+		}
+		System.out.println("This works");
+		flygame.onTick();
+//		frame.showMenu();
+	}
+	
+
+}

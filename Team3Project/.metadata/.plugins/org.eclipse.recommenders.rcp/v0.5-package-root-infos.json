@@ -143,6 +143,19 @@
     "javaRuntime": true
   },
   {
+    "symbolicName": "org.hamcrest.core",
+    "version": {
+      "major": 1,
+      "minor": 3,
+      "micro": 0,
+      "qualifier": "v201303031735"
+    },
+    "jarFileFingerprint": "5ed9fe32ab1d2b18bec7cac0a044090100f327ba",
+    "jarFileModificationDate": "2013-09-19T05:07:16-04:00",
+    "location": "C:\\Users\\Matthew\\Desktop\\eclipse\\plugins\\org.hamcrest.core_1.3.0.v201303031735.jar",
+    "javaRuntime": false
+  },
+  {
     "symbolicName": "jre",
     "version": {
       "major": 1,
@@ -219,6 +232,19 @@
     "jarFileModificationDate": "2016-02-15T01:00:52.326-05:00",
     "location": "C:\\Program Files\\Java\\jre1.8.0_73\\lib\\rt.jar",
     "javaRuntime": true
+  },
+  {
+    "symbolicName": "junit",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4e031bb61df09069aeb2bffb4019e7a5034a4ee0",
+    "jarFileModificationDate": "2013-05-17T12:05:12-04:00",
+    "location": "C:\\Users\\Matthew\\Desktop\\eclipse\\plugins\\org.junit_4.11.0.v201303080030\\junit.jar",
+    "javaRuntime": false
   },
   {
     "symbolicName": "jre",

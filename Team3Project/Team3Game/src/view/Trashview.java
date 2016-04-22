@@ -22,7 +22,11 @@ public class Trashview extends JComponent {
 		setBounds(x, y, (int)(100*wratio), (int)(100*hratio));
 		setOpaque(false);
 	}
-	public void setcoor(int xc, int yc){
+	public void setcoor(int xc){
+		x=xc;
+		setLocation(x,y);
+	}
+	public void setDragcoor(int xc,int yc){
 		x=xc;
 		y=yc;
 		setLocation(x,y);

@@ -63,7 +63,7 @@ public class RedKnotTests {
 	@Test
 	public void testFlyGameControllerAddTrash() {
 		FlyGameController f=new FlyGameController();
-		f.addTrash();
+		f.addTrash(1);
 		assertEquals(f.getLength(),4);
 	}
 	@Test

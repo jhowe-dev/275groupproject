@@ -20,18 +20,10 @@ public class FlyGameView extends View {
 	public double wratio=FlyGameController.widthratio;
 	boolean start=true;
 	Livesview lifepic=new Livesview(7);
-	public Clocker cl=new Clocker(60);
+	public Clocker cl=new Clocker(61);
 	Redknotview red=new Redknotview(100,1220);
-	public void render(ArrayList<int []> coordinates){
-		
+	public void render(ArrayList<Integer> coordinates){
 		if(start){
-			int q=0;
-			for(int[] i:coordinates){
-				trashlist.add(new Trashview(i[0],i[1]));
-				Trashview t=trashlist.get(q);
-				add(t);
-				q++;
-			}
 			start=false;
 			add(can);
 			add(cl);
@@ -42,8 +34,8 @@ public class FlyGameView extends View {
 		}
 		else{
 			int q=0;
-			for(int[] i:coordinates){
-				trashlist.get(q).setcoor(i[0],i[1]);
+			for(int i:coordinates){
+				setCoor(q,i);
 				q++;
 			}
 		}
@@ -68,6 +60,12 @@ public class FlyGameView extends View {
 	}
 	public void updateRed(int yPosition){
 		red.sety(yPosition);
+	}
+	public void trashDrag(int index, int x, int y){
+		trashlist.get(index).setDragcoor(x,y);
+	}
+	public void setCoor(int index, int coorx){
+		trashlist.get(index).setcoor(coorx);
 	}
 	
 }
