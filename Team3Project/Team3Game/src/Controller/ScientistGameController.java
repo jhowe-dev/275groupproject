@@ -54,7 +54,7 @@ public class ScientistGameController {
 				Thread.sleep(60);
 				} 
 			catch (InterruptedException e) {
-				e.printStackTrace();
+				e.printStackTrace();/
 				}
 			for(int i=0;i<4;i++){
 				for(int j=0;j<14;j++){
