@@ -102,21 +102,21 @@ public class ScientistGameController {
 		};
 		return(timerListener);
 	}
-	public void addRiverItem(int x,int y,int type){
-		if(type==0){
-			RiverItem item=new RiverItem(x,y,type,counterTrash);
+	public void addRiverItem(int x,int y,int index){
+		if(index==0){
+			RiverItem item=new RiverItem(x,y,index,counterTrash);
 			river[y][x]=item;
 			scientistGameViewer.addTrash(x,y,addMouse());
 			counterTrash++;
 		}
-		else if(type==1){
-			RiverItem item=new RiverItem(x,y,type,counterFish);
+		else if(index==1){
+			RiverItem item=new RiverItem(x,y,index,counterFish);
 			river[y][x]=item;
 			scientistGameViewer.addFish(x,y,addMouse());
 			counterFish++;
 		}
-		else if(type==2){
-			RiverItem item=new RiverItem(x,y,type,counterLiquid);
+		else if(index==2){
+			RiverItem item=new RiverItem(x,y,index,counterLiquid);
 			river[y][x]=item;
 			scientistGameViewer.addLiquid(x,y,addMouse());
 			counterLiquid++;
