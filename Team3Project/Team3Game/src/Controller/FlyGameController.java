@@ -89,9 +89,11 @@ public class FlyGameController {
 		}
 		if(life>0){
 			System.out.println("You win");
+			//System.exit(0);
 		}
 		else{
 			System.out.println("You lose");
+			//System.exit(0);
 		}
 	
 	}
