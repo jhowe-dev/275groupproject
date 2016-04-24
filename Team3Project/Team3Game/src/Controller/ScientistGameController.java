@@ -17,7 +17,7 @@ import Model.Trash;
 import Model.TrashCan;
 import view.FlyGameView;
 import view.ScientistGameView;
-
+ 
 public class ScientistGameController {
 	public ScientistGameView scientistGameViewer=new ScientistGameView();
 	RiverItem[][] river=new RiverItem[4][14];
