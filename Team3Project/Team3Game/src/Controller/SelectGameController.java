@@ -24,6 +24,7 @@ public class SelectGameController{
 	private static int imgHeight = 100;
 	private static int imgWidth = 100;
 	private boolean gameOver = false;
+	private boolean selectOver = false;
 	
 
 	//getters
