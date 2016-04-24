@@ -1,10 +1,18 @@
 package Model;
 
 public abstract class Hero extends Character{
-
-	public Hero(int x, int y) {
+	//mobile character in certain circumstances
+	private int health;
+	
+	public Hero(int x, int y, int health){
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		this.health = health;
+	}
+	public void decrementHealth(int decrement) {
+		health = health - decrement;
+	}
+	public int getHealth(){
+		return this.health;
 	}
 
 }
