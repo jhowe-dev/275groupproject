@@ -20,7 +20,7 @@ public class FlyGameView extends View {
 	public double wratio=FlyGameController.widthratio;
 	boolean start=true;
 	Livesview lifepic=new Livesview(7);
-	public Clocker cl=new Clocker(61);
+	public Clocker cl=new Clocker(61,1200,650);
 	Redknotview red=new Redknotview(100,1220);
 	public void render(ArrayList<Integer> coordinates){
 		if(start){

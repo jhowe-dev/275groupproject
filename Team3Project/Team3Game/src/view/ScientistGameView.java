@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JSeparator;
@@ -13,10 +15,10 @@ import javax.swing.SwingConstants;
 import Controller.FlyGameController;
 
 public class ScientistGameView extends View {
-	ArrayList<FisherManView> fishermen=new ArrayList<FisherManView>();
-	ArrayList<FishView> fishes=new ArrayList<FishView>();
-	ArrayList<Trashview> trashes=new ArrayList<Trashview>();
-	ArrayList<LiquidView> liquids=new ArrayList<LiquidView>();
+	FisherManView[] fishermen=new FisherManView[12];
+	Map<Integer,FishView> fishes=new HashMap<Integer,FishView>();
+	Map<Integer,Trashview> trashes=new HashMap<Integer,Trashview>();
+	Map<Integer,LiquidView> liquids=new HashMap<Integer,LiquidView>();
 	ToolButtonView ticket=new ToolButtonView("Ticket",0,0);
 	ToolButtonView vile=new ToolButtonView("vile",1,0);
 	ToolButtonView bin=new ToolButtonView("bin",0,1);
@@ -24,9 +26,8 @@ public class ScientistGameView extends View {
 	HorseshoeCrabView h=new HorseshoeCrabView(670,200);
 	ToolTableView t=new ToolTableView(520,0);
 	Riverview r=new Riverview();
-	Livesview lifepic=new Livesview(7);
-	public Clocker cl=new Clocker(61);
-	Redknotview red=new Redknotview(100,1220);
+	ScoreView scoreview=new ScoreView(0);
+	public Clocker cl=new Clocker(61,1240,0);
 	public ScientistGameView(){
 		setLayout(null);
 		setSize((int) 1440, (int) 900);
@@ -41,58 +42,75 @@ public class ScientistGameView extends View {
 		add(vile);
 		add(tag);
 		add(r);
+		add(cl);
+		add(scoreview);
 		setVisible(true);
 		  //setExtendedState(JMAXIMIZED_BOTH); 
 		 // setUndecorated(true);
 		
 	}
-	public void addFisherman(int x,MouseListener listen){
+	public void addFisherman(int x,int index){
 		
-		FisherManView fishman=new FisherManView(x,350);
-		fishermen.add(fishman);
+		FisherManView fishman=new FisherManView(x*100,320);
+		fishermen[index]=fishman;
 		add(fishman);
-		fishman.addMouseListener(listen);
+		repaint();
 	}
-	public void addFish(int x,int y, MouseListener listen){
+	public void addFish(int x,int y,int index){
 		FishView fish=new FishView(x*100,y*100+470);
-		fishes.add(fish);
+		fishes.put(new Integer(index),fish);
 		add(fish);
-		fish.addMouseListener(listen);
 		repaint();
 		
 	}
-	public void addTrash(int x,int y,MouseListener listen){
+	public void addTrash(int x,int y,int index){
 		Trashview trash=new Trashview(x*100,y*100+470);
-		trashes.add(trash);
+		trashes.put(new Integer(index),trash);
 		add(trash);
-		trash.addMouseListener(listen);
 		repaint();
 	}
-	public void addLiquid(int x,int y,MouseListener listen){
+	public void addLiquid(int x,int y,int index){
 		LiquidView liquid=new LiquidView(x*100,y*100+470);
-		liquids.add(liquid);
+		liquids.put(new Integer(index),liquid);
 		add(liquid);
-		liquid.addMouseListener(listen);
 		repaint();
 	}
 	public void removeFisherman(int index){
-		remove(fishermen.get(index));
-		//fishermen.remove(index);
+		remove(fishermen[index]);
+		fishermen[index]=null;
 		repaint();
 	}
 	public void removeFish(int index){
 		remove(fishes.get(index));
-		//fishes.remove(index);
+		fishes.remove(index);
 		repaint();
 	}
 	public void removeTrash(int index){
 		remove(trashes.get(index));
-		//trashes.remove(index);
+		trashes.remove(index);
 		repaint();
 	}
 	public void removeLiquid(int index){
 		remove(liquids.get(index));
-		//liquids.remove(index);
+		liquids.remove(index);
 		repaint();
+	}
+	public void addTicketButton(MouseListener listen){
+		ticket.addMouseListener(listen);
+	}
+	public void addBinButton(MouseListener listen){
+		bin.addMouseListener(listen);
+	}
+	public void addVileButton(MouseListener listen){
+		vile.addMouseListener(listen);
+	}
+	public void addTagButton(MouseListener listen){
+		tag.addMouseListener(listen);
+	}
+	public void setScore(int score){
+		scoreview.setScore(score);
+	}
+	public void updateTime(int time){
+		cl.setTime(time);
 	}
 }
