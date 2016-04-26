@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Timer;
 
 import Model.Boss;
 import Model.EmployeeHero;
@@ -11,6 +12,7 @@ public class BossFight1Controller {
 	public BossFight1View view = new BossFight1View();
 	public Boss boss = new Boss(4, 5);
 	public EmployeeHero hero = new EmployeeHero(330, 450, 100);//will probably change all coordinates
+	private boolean clicked=false;
 	
 	//bad code starts right here
 	public static int imgw=100;//these need to be phased out by like, the alpha
@@ -24,22 +26,28 @@ public class BossFight1Controller {
 		view.addMouseListener(addMouse1());
 	}
 	public void OnTick(){
-		//I'm calling render() every time I change the caption, do I need to do this?
-		boolean playersTurn = true;
 		view.displayMessage("A trash monster appeared! It's your job to defend the estuary!");
 		//TODO: pause then display next message
 		while(hero.getHealth()!=0){
-			if (playersTurn == true){
+			while(!clicked){
 				view.displayMessage("Click to attack!");
-				//TODO: pause and wait for a click here
-				view.HeroPunches(boss.getHealth());
-			}else{
+			}
+			try{
+				Thread.sleep(700);
+			}catch(InterruptedException e){
+				e.printStackTrace();
+			}
+			clicked = false;
+			try {
 				view.displayMessage("The monster responds!");
 				//TODO: projectile animation
 				hero.decrementHealth(25);
 				view.BossAttacks(hero.getHealth());
-			}
-			playersTurn = !playersTurn;//switch turn
+				Thread.sleep(600);
+				} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+				}
 		}
 		view.displayMessage("You lost! You weren't strong enough to defeat the trash monster :( ");
 	}
@@ -47,16 +55,13 @@ public class BossFight1Controller {
 		MouseListener ear = new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//shoot something at the boss
+				clicked = true;
+				//TODO: pause and wait for a click here
 				boss.decrementHealth(5);
 				view.HeroPunches(boss.getHealth());
 			}
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}
 		};
 		return ear;
-	}
-	public static void main(String[] args){
-		BossFight1Controller p=new BossFight1Controller();
-		p.OnTick();
 	}
 }
