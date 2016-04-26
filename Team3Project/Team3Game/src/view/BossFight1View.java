@@ -3,6 +3,10 @@ package view;
 import Controller.BossFight1Controller;
 
 public class BossFight1View extends View{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public MonsterView bossView = new MonsterView("Employee image map filename here", 20, 20, 300, 300);
 	public HeroView heroView = new HeroView("Employee image map filename here", 400, 100, 200, 200);
 	public Caption caption = new Caption(20, 400, 800, 100);
@@ -27,7 +31,7 @@ public class BossFight1View extends View{
 		setSize((int)(1440*wratio), (int)(900*hratio));
     	setVisible(true);
 	}
-	
+	public void render() {}
 	public void HeroPunches(int newBossHealth){
 		//decrement boss health
 		BossLivesView.setHealth(newBossHealth);
