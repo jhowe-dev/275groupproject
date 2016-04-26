@@ -26,6 +26,13 @@ public class MainController {
 //		frame.addMenu(flygame, plntGame, bf1);
 //		frame.setVisible(true);
 //		plntGame.onTick();
+		//flygame.onTick();
+		
+		//frame.dispose();
+		//frame = new MainView();
+		//frame.addMenu(flygame, plntGame);
+		//frame.setVisible(true);
+		//plntGame.onTick();
 
 		
 		//frame.showMenu();

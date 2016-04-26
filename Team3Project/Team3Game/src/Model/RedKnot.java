@@ -12,6 +12,7 @@ public class RedKnot extends Character {
 	public boolean up;
 	public int randstart;
 	int endpoint;
+	
 	public RedKnot(int x, int y) {
 		super(x, y);
 		randstart=rand.nextInt(2);

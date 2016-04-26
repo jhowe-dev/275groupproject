@@ -158,6 +158,8 @@ public class MainView extends JFrame {
     	layeredPane.setLayer(flyView, 0);
     	layeredPane.add(flyView);
     	game.start=true;
+    	
+    	start=true;
     	flyView = game.flyGameViewer;
     	flyView.setLayout(null);
     	flyView.setSize((int) frameHeight, (int) frameWidth);
