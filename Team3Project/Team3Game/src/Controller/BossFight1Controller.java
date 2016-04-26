@@ -21,40 +21,27 @@ public class BossFight1Controller {
 	public static double heightratio=screenheight/900;
 	
 	public BossFight1Controller(){//constructor
-		view.render();
 		view.addMouseListener(addMouse1());
 	}
 	public void OnTick(){
 		//I'm calling render() every time I change the caption, do I need to do this?
 		boolean playersTurn = true;
 		view.displayMessage("A trash monster appeared! It's your job to defend the estuary!");
-		view.render();
 		//TODO: pause then display next message
 		while(hero.getHealth()!=0){
-			try {
-				Thread.sleep(65);
-				} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-				}
 			if (playersTurn == true){
 				view.displayMessage("Click to attack!");
-				view.render();
 				//TODO: pause and wait for a click here
 				view.HeroPunches(boss.getHealth());
-				view.render();
 			}else{
 				view.displayMessage("The monster responds!");
 				//TODO: projectile animation
 				hero.decrementHealth(25);
 				view.BossAttacks(hero.getHealth());
-				view.render();
 			}
-			view.render();
 			playersTurn = !playersTurn;//switch turn
 		}
 		view.displayMessage("You lost! You weren't strong enough to defeat the trash monster :( ");
-		view.render();
 	}
 	public MouseListener addMouse1(){
 		MouseListener ear = new MouseListener(){

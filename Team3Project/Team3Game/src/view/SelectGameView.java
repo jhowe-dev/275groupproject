@@ -18,7 +18,7 @@ public class SelectGameView extends View {
 	private double heightRatio=1;
 	private double widthRatio=1;
 	boolean start = true;
-	private HealthView health= new HealthView();
+	//private HealthView health= new HealthView();
 	
 	public SelectGameView(ArrayList<Plant> plantList, ExitArrow exit){
 		for(Plant p:plantList){
@@ -33,7 +33,7 @@ public class SelectGameView extends View {
 				add(p);
 			}
 		add(exArr);
-		add(health);
+		//add(health);
 		setSize((int)(1440*widthRatio),(int)(900*heightRatio));
 		setVisible(true);	
 	}

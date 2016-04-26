@@ -22,6 +22,6 @@ public class Caption extends JLabel {
 		setOpaque(false);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setVerticalAlignment(SwingConstants.CENTER);
-		setFont(new Font("TimesRoman", Font.PLAIN, 60));
+		setFont(new Font("TimesRoman", Font.PLAIN, 20));
 	}
 }

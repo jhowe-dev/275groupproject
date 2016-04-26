@@ -7,6 +7,6 @@ public class EmployeeHero extends Hero {
 		super(x, y, health);
 	}
 	public void decrementHealth(int dec){
-		decrementHealth(25);
+		super.decrementHealth(dec);
 	}
 }

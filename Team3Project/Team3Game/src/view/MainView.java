@@ -11,6 +11,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controller.BossFight1Controller;
 import Controller.FlyGameController;
 import Controller.ScientistGameController;
 import Controller.SelectGameController;
@@ -23,11 +24,13 @@ public class MainView extends JFrame {
     private JPanel menu;
     private JPanel flyView;
     private JPanel selectView;
+    private JPanel bf1view;
     private JLayeredPane layeredPane; 
     private ScientistGameController sgame;
     volatile boolean start=false;
     private FlyGameController game;
     private SelectGameController selectGame;
+    private BossFight1Controller bf1;
 //    private boolean game1 = true;
     
     
@@ -53,9 +56,10 @@ public class MainView extends JFrame {
     **/
     
 
-    public void addMenu(FlyGameController agame, SelectGameController sgame) {
+    public void addMenu(FlyGameController agame, SelectGameController sgame, BossFight1Controller bf1) {
     	this.game = agame;
     	this.selectGame = sgame;
+    	this.bf1 = bf1;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new CardLayout(0, 0));
@@ -102,6 +106,16 @@ public class MainView extends JFrame {
 		});
 		menu.add(scienceGame);
 		**/
+		JButton bossFight1 = new JButton("Boss Fight");
+		bossFight1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addBossFight1();
+				layeredPane.setLayer(menu, 0);
+				layeredPane.setLayer(bf1view, 1);
+				//game1 = false;
+			}
+		});
+		menu.add(bossFight1);
 		
 		layeredPane.setVisible(true);
     	
@@ -130,6 +144,7 @@ public class MainView extends JFrame {
     	layeredPane.setLayer(menu, 10);
     	layeredPane.setLayer(flyView, 1);
     	layeredPane.setLayer(selectView, 2);
+    	layeredPane.setLayer(bf1view, 3);
     }
     
     public void addPlntGame() {
@@ -141,6 +156,16 @@ public class MainView extends JFrame {
     	layeredPane.add(selectView);
     	setVisible(true);
     	
+    }
+    public void addBossFight1(){
+    	this.bf1view = bf1.view;
+    	bf1view.setLayout(null);
+    	bf1view.setSize((int) frameHeight, (int) frameWidth);
+    	bf1view.setBounds(0, 0,  1440,  900);
+    	layeredPane.setLayer(bf1view, 100);
+    	layeredPane.add(bf1view);
+    	setVisible(true);
+    	revalidate();
     }
     
     public boolean canI(){
