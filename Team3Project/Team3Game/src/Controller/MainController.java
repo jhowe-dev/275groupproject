@@ -9,9 +9,12 @@ public class MainController {
 	MainView frame;
 	FlyGameController game;
 	public boolean flyStart;
+	public boolean plantStart;
 	
-	public MainController(BossFight1Controller bf1, FlyGameController agame, SelectGameController sgame, ScientistGameController ggame) {
-		this.frame = new MainView(bf1, agame, sgame, ggame);
+	public MainController(BossFight1Controller bf1, FlyGameController agame, 
+			SelectGameController sgame, ScientistGameController ggame,
+			GridGameController gridController, BossFight2Controller bf2) {
+		this.frame = new MainView(bf1, agame, sgame, ggame, gridController, bf2);
 		this.game = agame;
 		this.frame.birdGame.addActionListener(addFlyActionListener(agame, frame));
 	}

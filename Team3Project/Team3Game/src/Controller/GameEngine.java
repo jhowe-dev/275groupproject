@@ -5,16 +5,18 @@ import view.MainView;
 public class GameEngine {
 	
 	public static void main(String[] args) {
+		BossFight1Controller bf1 = new BossFight1Controller();
 		FlyGameController flygame = new FlyGameController();
 		SelectGameController plntGame = new SelectGameController();
-		BossFight1Controller bf1 = new BossFight1Controller();
-		ScientistGameController sgame=new ScientistGameController();
 		GridGameController ggame=new GridGameController();
+		ScientistGameController sgame=new ScientistGameController();
+		BossFight2Controller bf2 = new BossFight2Controller();
+		
 	//	MainView frame = new MainView(bf1); 
-		MainController con = new MainController(bf1, flygame, plntGame, sgame);
+		MainController con = new MainController(bf1, flygame, plntGame, sgame, ggame, bf2);
 		MainView frame = con.frame;
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			} 
 		catch (InterruptedException e) {
 			e.printStackTrace();
@@ -22,7 +24,52 @@ public class GameEngine {
 		//frame.addMenu(flygame, plntGame, sgame);
 		if (con.flyStart) {
 			flygame.onTick();
+			//flygame = new FlyGameController();
+			con.flyStart = false;
 			frame.showMenu();
+		}
+		try {
+			Thread.sleep(3000);
+			} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			}
+		if (frame.plantGameStart) {
+			plntGame.onTick();
+			frame.plantGameStart = false;
+			frame.showMenu();
+		}
+		try {
+			Thread.sleep(3000);
+			} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			}
+		if (frame.gridGameStart) {
+			ggame.onTick();
+			frame.gridGameStart = false;
+			frame.showMenu();
+		}
+		try {
+			Thread.sleep(3000);
+			} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			}
+		if (frame.scienceGameStart) {
+			sgame.onTick();
+			frame.scienceGameStart = false;
+			frame.showMenu();
+		}
+		try {
+			Thread.sleep(3000);
+			} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			}
+		if (frame.finalBossStart) {
+			bf2.OnTick();
+			frame.finalBossStart = false;
 		}
 	}
 

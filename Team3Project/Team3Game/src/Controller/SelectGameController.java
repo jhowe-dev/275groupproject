@@ -104,7 +104,9 @@ public class SelectGameController{
 	}
 	
 	public void onTick(){
+		System.out.println(gameOver);
 		if(gameOver){
+			return;
 		}
 		else{
 				
