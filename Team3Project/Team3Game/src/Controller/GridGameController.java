@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 import Model.GoodGridPlant;
 import Model.Plant;
+import view.GridGameView;
 import Model.BadGridPlant;
 import Model.GamePlant;
 public class GridGameController {
@@ -28,6 +29,7 @@ public class GridGameController {
 	private boolean gameOver = false;
 	//private Timer timer = new Timer(1000, addTime());
 	public int getTurn(){return turn;}
+	private GridGameView ggv = new GridGameView();
 	
 	//set Bad Plant initial position, can't be 0 or [length-1], don't want it to be on the corner or edge
 	private void initPlant(BadGridPlant bgp){
@@ -50,7 +52,14 @@ public class GridGameController {
 	public GridGameController()
 	{	
 		initPlant(firstPlant);
+		ggv.addPlantButtonListen(addmouseNat(), 0);
+		ggv.addPlantButtonListen(addmouseNat(), 1);
+		ggv.addPlantButtonListen(addmouseNat(), 2);
+		ggv.addPlantButtonListen(addmouseInvasive(), 3);
+		ggv.addPlantButtonListen(addmouseInvasive(), 4);
+		ggv.addPlantButtonListen(addmouseInvasive(), 5);
 	}
+	public GridGameView getView(){return ggv;}
 	
 	public void onTick()
 	{
@@ -76,11 +85,13 @@ public class GridGameController {
 							int newX;
 							int newY;
 							boolean flag = false;
-							int random = rand.nextInt(3);
+							int random = rand.nextInt(4);
 							while(!flag)
 							{
 								if(!possibleSpots[random])
 								{
+									newX = 0;
+									newY = 0;
 									System.out.println("First Spot is" + random);
 									switch(random)
 									{
@@ -89,6 +100,7 @@ public class GridGameController {
 										newY = bgp.getY() -1;
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
 										System.out.println(newX +" "+ newY + "Case 0");
+										surroundedBy(bgp);
 										flag = true;
 										break;
 									case 1:
@@ -96,6 +108,7 @@ public class GridGameController {
 										newY = bgp.getY() +1;
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
 										System.out.println(newX +" "+ newY + "Case 1"); 
+										surroundedBy(bgp);
 										flag = true;
 										break;
 									case 2:
@@ -103,6 +116,7 @@ public class GridGameController {
 										newY = bgp.getY();
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
 										System.out.println(newX +" "+ newY + "Case 2");
+										surroundedBy(bgp);
 										flag = true;
 										break;
 									case 3:
@@ -110,6 +124,7 @@ public class GridGameController {
 										newY = bgp.getY();
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
 										System.out.println(newX + " " + newY + "Case 3");
+										surroundedBy(bgp);
 										flag = true;
 										break;
 									}
@@ -120,6 +135,10 @@ public class GridGameController {
 							}//while
 							
 						}//if
+						else
+						{
+							gameOver = true;
+						}
 					}//if
 				}//for
 			turn = 1;
@@ -146,142 +165,50 @@ public class GridGameController {
 			}//elseSystem.out.println("Player turn shit");
 		}//while
 	}//onTick			
-						
-						
-						/*
-						int bgpX = bgp.getX();
-						int bgpY = bgp.getY();
-						int newX = 0;
-						int newY = 0;
-						int random = rand.nextInt(3);
-						
-						boolean south = (!(bgpY + 1 >= gameGrid.length) && (gameGrid[bgpY + 1][bgpX] == null)) ? false:true;
-						boolean north = (!(bgpY - 1 <= gameGrid.length) && (gameGrid[bgpY - 1][bgpX] == null)) ? false:true;
-						boolean east = (!(bgpX + 1 >= gameGrid.length) && (gameGrid[bgpY][bgpX + 1] == null)) ? false:true;
-						boolean west = (!(bgpX - 1 >= gameGrid.length) && (gameGrid[bgpY][bgpX - 1] == null)) ? false:true;
-						
-						boolean[] allowed = {south,north,east,west};
-						while(!allowed[random]){
-							random = rand.nextInt(3);
-						}//while
-						switch(random)
-						{
-						case 0:
-							newX = bgpX;
-							newY = bgpY +1;
-							break;
-						case 1:
-							newX = bgpX;
-							newY = bgpY + 1;
-						case 2:
-							newX = bgpX + 1;
-							newY = bgpY;
-							break;
-						case 3:
-							newX = bgpX - 1;
-							newY = bgpY;
-						}
-						BadGridPlant newPlant = new BadGridPlant("Name",newX, newY);
-						badGridPlants.add(newPlant);
-						gameGrid[newY][newX] = newPlant;
-						*/
-			
-	
 	//checks if given Bad Plant is surround by good Plants.
 	private boolean[] surroundedBy(BadGridPlant bgp){
-		boolean surrounded = false;
 		int bgpX = bgp.getX();
 		int bgpY = bgp.getY();
-		GamePlant flagger = new GamePlant(0,0,"Flag",false);
-		boolean north = true, south = true, east = true, west = true;
-		try{
-			System.out.print("hit North");
-			flagger = gameGrid[bgpX -1][bgpY];
-			if(flagger == null)
-				System.out.print("hit North");
-				north = true;
-				
-		}//north Try
-		catch(IndexOutOfBoundsException e){
-			System.out.print("hit North");
-			flagger = null;
-			north = false;
-		}//north catch
-		
-		try{
-			System.out.print("hit Sorth");
-			flagger = gameGrid[bgpX +1][bgpY];
-			if(flagger == null)
-				System.out.print("hit Sorth");
-				south = false;
-		}//south Try
-		catch(IndexOutOfBoundsException e){
-			flagger = null;
-			System.out.print("hit Sorth");	
-			south = false;
-		}//south catch
-		
-		try{
-			System.out.print("hit Eorth");
-			
-			flagger = gameGrid[bgpX][bgpY + 1];
-			if(flagger == null)
-				System.out.print("hit Eorth");
-				east = true;
-		}//east Try
-		catch(IndexOutOfBoundsException e){
-			flagger = null;
-			System.out.print("hit Eorth");
-			
-			east = false;
-		}//east catch
-		
-		try{
-			System.out.print("hit Worth");
-			
-			flagger = gameGrid[bgpX][bgpY - 1];
-			if(flagger == null)
-				System.out.print("hit Worth");
-				west = false;
-		}//west Try
-		catch(IndexOutOfBoundsException e){
-			flagger = null;
-			System.out.print("hit Worth");
+		boolean north,south,east,west;
+		if(bgpX - 1 < 0 || gameGrid[bgpX-1][bgpY] != null)
+		{
+			west = true;
+		}
+		else{
 			west = false;
-		}//west catch		
+		}
+		if(bgpX + 1 > gameGrid.length -1 || gameGrid[bgpX + 1][bgpY] != null)
+		{
+			east = true;
+		}
+		else{
+			east = false;
+		}
+		if(bgpY -1 < 0 || gameGrid[bgpX][bgpY - 1] != null)
+		{
+			north = true;
+		}	
+		else{
+			north = false;
+		}
+		if(bgpY + 1 > gameGrid.length -1 || gameGrid[bgpX][bgpY + 1] != null)
+		{
+			south = true;
+		}
+		else{
+			south = false;
+		}
 		boolean[] allowed = {north,south,east,west};
 		return allowed;
 	}
 	
-	public MouseListener addmousel(){
+	public MouseListener addmousePlayer(){
 		MouseListener l = new MouseListener(){
 			@Override
 			public void mousePressed(MouseEvent e){
-				}
-			@Override
-		    public void mouseEntered(MouseEvent e){ 
-				if(turn == 1){
-					if(turn ==1){
-						inHand= new GoodGridPlant(3,3,"This is a test");
-						System.out.println(inHand.getName());
-					}//if
-					
-					else if(true)//clicks in grid
-					{
-						if(inHand != null)
-						{
-							//verify that clicked grid pos. is null
-							//add thing to grid gameGrid[][] = inHand;
-							inHand = null;
-						}//if
-						else
-						{
-							System.out.println("Pick up a plant first!");
-						}//else
-					}//else
-				}//if
-				else{System.out.println("Not your turn!");}//else
 			}
+			@Override
+		    public void mouseEntered(MouseEvent e){}
 			@Override
 			public void mouseExited(MouseEvent e){}
 			@Override
@@ -290,6 +217,43 @@ public class GridGameController {
 			public void mouseReleased(MouseEvent e){}
 		};
 		return l;
+		
+	}
+	public MouseListener addmouseInvasive(){
+		MouseListener inv = new MouseListener(){
+			@Override
+			public void mousePressed(MouseEvent e){
+			}
+			@Override
+		    public void mouseEntered(MouseEvent e){}
+			@Override
+			public void mouseExited(MouseEvent e){}
+			@Override
+			public void mouseClicked(MouseEvent e){
+				
+			}	
+			@Override
+			public void mouseReleased(MouseEvent e){}
+		};
+		return inv;
+		
+	}
+	public MouseListener addmouseNat(){
+		MouseListener nat = new MouseListener(){
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+			}
+			@Override
+		    public void mouseEntered(MouseEvent e){}
+			@Override
+			public void mouseExited(MouseEvent e){}
+			@Override
+			public void mouseClicked(MouseEvent e){}	
+			@Override
+			public void mouseReleased(MouseEvent e){}
+		};
+		return nat;
 		
 	}
 	public static void main(String[] args)
