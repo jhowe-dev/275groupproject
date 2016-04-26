@@ -1,8 +1,10 @@
 package view;
 
 import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.border.LineBorder;
 
 public class GridGameView extends View {
 	PlantButtonView native1 = new PlantButtonView("native 1", 0);
@@ -38,7 +40,14 @@ public class GridGameView extends View {
 		 // setUndecorated(true);
 		
 	}
-	
+	public void updateGrid(int x, int y,boolean invasive){
+		if(!invasive){
+			dirtGrid[y][x].setBorder(new LineBorder(Color.GREEN, 3));
+		}
+		else{
+			dirtGrid[y][x].setBorder(new LineBorder(Color.RED, 3));
+		}
+	}
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
 		GridGameView ggView = new GridGameView();
@@ -49,7 +58,7 @@ public class GridGameView extends View {
     	 // setUndecorated(true);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.add(ggView);
-    	frame.setVisible(true);
+    	ggView.updateGrid(1,1,false);
 		frame.setVisible(true);
 	}
 }
