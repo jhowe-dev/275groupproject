@@ -23,23 +23,28 @@ public class MainView extends JFrame {
     final static int frameHeight = 1440;
     
     private JPanel contentPane;
-    private JPanel menu;
-    private JPanel flyView;
+    public JPanel menu;
+    public JPanel flyView;
     private JPanel selectView;
     private JPanel scientistview;
     private JPanel bf1view;
-    private JLayeredPane layeredPane; 
+    public JLayeredPane layeredPane; 
     private ScientistGameController sgame;
     private GridGameController ggame;
-    volatile boolean start=false;
+    volatile boolean start = false;
     private FlyGameController game;
     private SelectGameController selectGame;
     private BossFight1Controller bf1;
+    public boolean flyGameStart;
+    private boolean plantGameStart;
+    
+    public JButton birdGame;
+    
 //    private boolean game1 = true;
     
     
     
-    public MainView(BossFight1Controller bf1) {
+    public MainView(BossFight1Controller bf1, FlyGameController agame, SelectGameController sgame, ScientistGameController ggame) {
     	this.bf1 = bf1;
     	new JFrame("Fly Game");
     	setLayout(null);
@@ -59,16 +64,17 @@ public class MainView extends JFrame {
 		bf1.OnTick();
 		layeredPane.setLayer(bf1view, 0);
 		
-    }
-    /**
-    public boolean getGame1() {
-    	return game1;
+		addMenu(agame, sgame, ggame);
+		
     }
     
-    public void setGame1(boolean a) {
-    	this.game1 = a;
+    public boolean getFlyGameStart() {
+    	return this.flyGameStart;
     }
-    **/
+    
+    public void startFlyGame() {
+    	this.flyGameStart = true;
+    }
     
 
     public void addMenu(FlyGameController agame, SelectGameController sgame, ScientistGameController ggame) {
@@ -91,19 +97,21 @@ public class MainView extends JFrame {
 		layeredPane.add(menu);
 		
 		
-		JButton birdGame = new JButton("Redknot Game");
+		birdGame = new JButton("Redknot Game");
 		birdGame.setSize(400,600);
 		birdGame.setLocation(520,0);
 		birdGame.setBackground(Color.RED);
-		birdGame.addActionListener(new ActionListener() {
+		/*birdGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addflyGame();
 				layeredPane.setLayer(menu, 0);
 				layeredPane.setLayer(flyView, 1);
-				//game1 = true;
+				flyGameStart = true;
+				System.out.println(flyGameStart);
 			}
-		});
+		});*/
 		menu.add(birdGame);
+		//game.onTick();
 		
 		JButton plantGame = new JButton("Plant Game");
 		plantGame.setSize(400,600);
@@ -114,7 +122,6 @@ public class MainView extends JFrame {
 				addPlntGame();
 				layeredPane.setLayer(menu, 0);
 				layeredPane.setLayer(selectView, 1);
-				//game1 = false;
 			}
 		});
 		menu.add(plantGame);
@@ -138,7 +145,6 @@ public class MainView extends JFrame {
 				addBossFight1();
 				layeredPane.setLayer(menu, 0);
 				layeredPane.setLayer(scientistview, 1);
-				//game1 = false;
 			}
 		});
 		menu.add(scientist);
@@ -160,6 +166,8 @@ public class MainView extends JFrame {
     	game.start=true;
     	
     	start=true;
+    	flyGameStart = true;
+    	System.out.println("add" + flyGameStart);
     	flyView = game.flyGameViewer;
     	flyView.setLayout(null);
     	flyView.setSize((int) frameHeight, (int) frameWidth);
@@ -195,6 +203,10 @@ public class MainView extends JFrame {
     	layeredPane.add(bf1view);
     	setVisible(true);
     	revalidate();
+    }
+    
+    public void addBossFight2() {
+    	
     }
     
     public boolean canI(){
