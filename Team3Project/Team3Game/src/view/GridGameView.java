@@ -48,6 +48,9 @@ public class GridGameView extends View {
 			dirtGrid[y][x].setBorder(new LineBorder(Color.RED, 3));
 		}
 	}
+	public void updateTurn(String text){
+		caption.setText(text);
+	}
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
 		GridGameView ggView = new GridGameView();
@@ -58,7 +61,9 @@ public class GridGameView extends View {
     	 // setUndecorated(true);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.add(ggView);
+    	frame.setVisible(true);
     	ggView.updateGrid(1,1,false);
-		frame.setVisible(true);
+    	ggView.updateTurn("Computer turn");
+		
 	}
 }
