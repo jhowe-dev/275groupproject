@@ -31,7 +31,6 @@ public class BossFight1View extends View{
 		setSize((int)(1440*wratio), (int)(900*hratio));
     	setVisible(true);
 	}
-	public void render() {}
 	public void HeroPunches(int newBossHealth){
 		//decrement boss health
 		BossLivesView.setHealth(newBossHealth);

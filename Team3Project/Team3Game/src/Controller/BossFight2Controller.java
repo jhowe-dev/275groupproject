@@ -50,7 +50,6 @@ public class BossFight2Controller {
 			catch (InterruptedException e) {
 				e.printStackTrace();
 				}
-			view.render();
 		}
 		view.displayMessage("You won! Great work, honorable DNREC Employee! ");
 	}
@@ -66,9 +65,5 @@ public class BossFight2Controller {
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}
 		};
 		return ear;
-	}
-	public static void main(String[] args){
-		BossFight1Controller p=new BossFight1Controller();
-		p.OnTick();
 	}
 }

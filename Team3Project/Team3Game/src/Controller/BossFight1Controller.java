@@ -48,7 +48,6 @@ public class BossFight1Controller {
 			catch (InterruptedException e) {
 				e.printStackTrace();
 				}
-			view.render();
 		}
 		view.displayMessage("You lost! You weren't strong enough to defeat the trash monster :( ");
 	}
@@ -64,9 +63,5 @@ public class BossFight1Controller {
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}
 		};
 		return ear;
-	}
-	public static void main(String[] args){
-		BossFight1Controller p=new BossFight1Controller();
-		p.OnTick();
 	}
 }
