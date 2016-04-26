@@ -5,7 +5,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+
+import Controller.GridGameController;
 
 public class GridGameView extends View {
 	PlantButtonView native1 = new PlantButtonView("native 1", 0);
@@ -43,10 +46,10 @@ public class GridGameView extends View {
 	}
 	public void updateGrid(int x, int y,boolean invasive){
 		if(!invasive){
-			dirtGrid[y][x].setBorder(new LineBorder(Color.GREEN, 3));
+			dirtGrid[x][y].setBorder(new LineBorder(Color.GREEN, 3));
 		}
 		else{
-			dirtGrid[y][x].setBorder(new LineBorder(Color.RED, 3));
+			dirtGrid[x][y].setBorder(new LineBorder(Color.RED, 3));
 		}
 	}
 	public void updateTurn(String text){
@@ -74,10 +77,15 @@ public class GridGameView extends View {
 			break;
 		}
 	}
+	public void displayMessage(String Message)
+	{
+		JOptionPane.showMessageDialog(null, Message);
+	}
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
-		GridGameView ggView = new GridGameView();
-		
+		GridGameView ggView;
+		GridGameController ggCon = new GridGameController();
+		ggView = ggCon.getView();
 		frame.setLayout(null);
     	frame.setSize((int) 1440, (int) 900);
     	  //setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -85,8 +93,7 @@ public class GridGameView extends View {
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.add(ggView);
     	frame.setVisible(true);
-    	ggView.updateGrid(1,1,false);
-    	ggView.updateTurn("Computer turn");
+    	ggCon.onTick();
 		
 	}
 }

@@ -19,9 +19,9 @@ import Model.GamePlant;
 public class GridGameController {
 	
 	private ArrayList<BadGridPlant> badGridPlants = new ArrayList<BadGridPlant>();
-	private ArrayList<GoodGridPlant> goodGridPlants = new ArrayList<GoodGridPlant>();
+	//private ArrayList<GoodGridPlant> goodGridPlants = new ArrayList<GoodGridPlant>();
 	private BadGridPlant firstPlant;
-	private int placeable = 3;
+	private int placeable = 2;
 	private GamePlant[][] gameGrid = new GamePlant[5][5];
 	private Random rand = new Random();
 	private GamePlant inHand;
@@ -31,44 +31,56 @@ public class GridGameController {
 	public int getTurn(){return turn;}
 	private GridGameView ggv = new GridGameView();
 	
-	//set Bad Plant initial position, can't be 0 or [length-1], don't want it to be on the corner or edge
-	private void initPlant(BadGridPlant bgp){
-		int x = rand.nextInt(gameGrid.length-1);
-		int y  = rand.nextInt(gameGrid.length -1);
-		bgp = new BadGridPlant("",x,y);
-		bgp.setX(x);
-		bgp.setY(y);
-		badGridPlants.add(bgp);
-	}	
 	//Add initial plant/s to grid.  Only bad plants start in grid
-	private void initializeGrid()
+	private void initializeGrid(BadGridPlant bp)
 	{
-		for(BadGridPlant bp:badGridPlants)
-		{
-			gameGrid[bp.getX()][bp.getY()] = bp;
+		int x = rand.nextInt(5), y = rand.nextInt(5);
+		firstPlant = new  BadGridPlant("",x,y);
+		gameGrid[firstPlant.getX()][firstPlant.getY()] = bp;
+		badGridPlants.add(firstPlant);
+		ggv.updateGrid(x,y,true);
+	}
+	public void printGrid(){
+		for(int i =0; i < gameGrid.length; i++){
+			for(int j = 0; j < gameGrid.length; j++)
+			{
+				if(gameGrid[i][j] == null)
+					System.out.print("null");
+				else{
+				if(gameGrid[i][j].getGood())
+					System.out.print("good");
+				else
+					System.out.print("badp");
+				if(gameGrid[i][j] == null)
+					System.out.print("null");
+				}
+			}
+			System.out.println(" ");
 		}
 	}
-	
 	public GridGameController()
 	{	
-		initPlant(firstPlant);
+		printGrid();
+		initializeGrid(firstPlant);
+		printGrid();
 		ggv.addPlantButtonListen(addmouseNat(), 0);
 		ggv.addPlantButtonListen(addmouseNat(), 1);
 		ggv.addPlantButtonListen(addmouseNat(), 2);
 		ggv.addPlantButtonListen(addmouseInvasive(), 3);
 		ggv.addPlantButtonListen(addmouseInvasive(), 4);
 		ggv.addPlantButtonListen(addmouseInvasive(), 5);
+		ggv.addMouseListener(addmousePlayer());
 	}
 	public GridGameView getView(){return ggv;}
 	
 	public void onTick()
 	{
-		initializeGrid();
 		while(!gameOver){
-			System.out.println("Game is running");
-			if(turn == -1){
-				//boolean gameOverFlag = true;
-				for(BadGridPlant bgp:badGridPlants){
+			if(turn == -1)
+			{
+				placeable = 2;
+				for(BadGridPlant bgp:badGridPlants)
+				{
 					if(bgp.getCanGrow()) 
 					{
 						System.out.println("Something Can Grow");
@@ -80,7 +92,6 @@ public class GridGameController {
 						   !possibleSpots[2] ||
 						   !possibleSpots[3])//0 == north 1 == south 2 == east 3 == west
 						{
-					//		gameOverFlag = false;
 							System.out.println("Found a spot");
 							int newX;
 							int newY;
@@ -90,24 +101,26 @@ public class GridGameController {
 							{
 								if(!possibleSpots[random])
 								{
-									newX = 0;
-									newY = 0;
 									System.out.println("First Spot is" + random);
 									switch(random)
 									{
 									case 0:
 										newX = bgp.getX();
 										newY = bgp.getY() -1;
+										
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
-										System.out.println(newX +" "+ newY + "Case 0");
+										ggv.updateGrid(newX, newY, true);
+										
 										surroundedBy(bgp);
 										flag = true;
 										break;
 									case 1:
 										newX = bgp.getX();
 										newY = bgp.getY() +1;
+										
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
-										System.out.println(newX +" "+ newY + "Case 1"); 
+										ggv.updateGrid(newX, newY, true);
+										
 										surroundedBy(bgp);
 										flag = true;
 										break;
@@ -115,15 +128,19 @@ public class GridGameController {
 										newX = bgp.getX() + 1;
 										newY = bgp.getY();
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
-										System.out.println(newX +" "+ newY + "Case 2");
+										
+										ggv.updateGrid(newX, newY, true);
+									
 										surroundedBy(bgp);
 										flag = true;
 										break;
 									case 3:
 										newX = bgp.getX() - 1;
 										newY = bgp.getY();
+										
 										gameGrid[newX][newY] = new BadGridPlant("name",newX,newY);
-										System.out.println(newX + " " + newY + "Case 3");
+										ggv.updateGrid(newX, newY, true);
+										
 										surroundedBy(bgp);
 										flag = true;
 										break;
@@ -135,34 +152,19 @@ public class GridGameController {
 							}//while
 							
 						}//if
-						else
-						{
-							gameOver = true;
-						}
+						
 					}//if
+					else
+					{
+						gameOver = true;
+					}
 				}//for
 			turn = 1;
 			}//if
 			else{
-				try{Thread.sleep(10000);}
-				catch(InterruptedException e){ e.printStackTrace();}
-				for(int i = 0; i < gameGrid.length; i++)
-				{
-					for(int j = 0; j< gameGrid.length; j++)
-					{
-						if(gameGrid[i][j] == null)
-							System.out.print("null");
-						else
-							System.out.print("Plant");
-					}
-					System.out.println("New Row");
-				}
-				System.out.println("Player turn shit");
-				System.out.println("Player turn shit");
-				System.out.println("Player turn shit");
-				System.out.println("Player turn shit");
-				turn = -1;
-			}//elseSystem.out.println("Player turn shit");
+				if(placeable > 0){}
+				else{turn = -1;}
+			}//else  
 		}//while
 	}//onTick			
 	//checks if given Bad Plant is surround by good Plants.
@@ -206,6 +208,37 @@ public class GridGameController {
 		MouseListener l = new MouseListener(){
 			@Override
 			public void mousePressed(MouseEvent e){
+				int mouseX = e.getX();
+				int mouseY = e.getY();
+				
+				int arrIndexX = (mouseX - 345);
+				if(arrIndexX < 0)
+					arrIndexX = 0;
+				else
+					arrIndexX /= 150;
+				
+				int arrIndexY = (mouseY - 120);
+				if(arrIndexY < 0)
+					arrIndexY = 0;
+				else
+					arrIndexY /= 150;
+				
+				//ggv.displayMessage();
+				
+				ggv.displayMessage(arrIndexX+"");
+				ggv.displayMessage(arrIndexY+"");
+				
+				System.out.println(placeable + "");
+				if(inHand != null && gameGrid[arrIndexX][arrIndexY] == null)
+				{
+					inHand.setX(arrIndexX);
+					inHand.setY(arrIndexY);
+
+					gameGrid[arrIndexX][arrIndexY] = inHand;
+					ggv.updateGrid(arrIndexX, arrIndexY, inHand.getGood());
+					placeable --;
+					inHand = null;
+				}//If
 			}
 			@Override
 		    public void mouseEntered(MouseEvent e){}
@@ -223,6 +256,10 @@ public class GridGameController {
 		MouseListener inv = new MouseListener(){
 			@Override
 			public void mousePressed(MouseEvent e){
+				if(inHand != null){}
+				
+				else
+					inHand = new BadGridPlant("",0,0);
 			}
 			@Override
 		    public void mouseEntered(MouseEvent e){}
@@ -243,6 +280,10 @@ public class GridGameController {
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
+				if(inHand != null){}
+			
+				else
+					inHand = new GoodGridPlant("",0,0);
 			}
 			@Override
 		    public void mouseEntered(MouseEvent e){}
@@ -256,11 +297,5 @@ public class GridGameController {
 		return nat;
 		
 	}
-	public static void main(String[] args)
-	{
-		GridGameController ggc = new GridGameController();
-		ggc.onTick();
-	}
-	
 	
 }
