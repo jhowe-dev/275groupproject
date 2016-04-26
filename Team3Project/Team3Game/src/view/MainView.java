@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.BossFight1Controller;
 import Controller.FlyGameController;
+import Controller.GridGameController;
 import Controller.ScientistGameController;
 import Controller.SelectGameController;
 
@@ -24,9 +26,11 @@ public class MainView extends JFrame {
     private JPanel menu;
     private JPanel flyView;
     private JPanel selectView;
+    private JPanel scientistview;
     private JPanel bf1view;
     private JLayeredPane layeredPane; 
     private ScientistGameController sgame;
+    private GridGameController ggame;
     volatile boolean start=false;
     private FlyGameController game;
     private SelectGameController selectGame;
@@ -35,7 +39,8 @@ public class MainView extends JFrame {
     
     
     
-    public MainView() {
+    public MainView(BossFight1Controller bf1) {
+    	this.bf1 = bf1;
     	new JFrame("Fly Game");
     	setLayout(null);
     	setSize((int) 1440, (int) 900);
@@ -44,6 +49,16 @@ public class MainView extends JFrame {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setSize((int)(frameHeight), (int)(frameWidth));
     	setVisible(true);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		contentPane.setLayout(new CardLayout(0, 0));
+		setContentPane(contentPane);
+		layeredPane = new JLayeredPane();
+		contentPane.add(layeredPane, "Team 3 Game");
+		addBossFight1();
+		bf1.OnTick();
+		layeredPane.setLayer(bf1view, 0);
+		
     }
     /**
     public boolean getGame1() {
@@ -56,25 +71,30 @@ public class MainView extends JFrame {
     **/
     
 
-    public void addMenu(FlyGameController agame, SelectGameController sgame, BossFight1Controller bf1) {
+    public void addMenu(FlyGameController agame, SelectGameController sgame, ScientistGameController ggame) {
     	this.game = agame;
     	this.selectGame = sgame;
-    	this.bf1 = bf1;
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(new CardLayout(0, 0));
-		setContentPane(contentPane);
-		
-		layeredPane = new JLayeredPane();
-		contentPane.add(layeredPane, "Team 3 Game");
+    	this.sgame = ggame;
+//		contentPane = new JPanel();
+//		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+//		contentPane.setLayout(new CardLayout(0, 0));
+//		setContentPane(contentPane);
+//		
+//		layeredPane = new JLayeredPane();
+//		contentPane.add(layeredPane, "Team 3 Game");
 		
 		menu = new JPanel();
-		layeredPane.setLayer(menu, 0);
-		menu.setBounds(0, 0, 1440, 900);
+		menu.setLayout(null);
+    	menu.setSize((int) 1440, (int) 900);
+		layeredPane.setLayer(menu, 10);
+//		menu.setBounds(0, 0, 1440, 900);
 		layeredPane.add(menu);
 		
 		
 		JButton birdGame = new JButton("Redknot Game");
+		birdGame.setSize(400,600);
+		birdGame.setLocation(520,0);
+		birdGame.setBackground(Color.RED);
 		birdGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addflyGame();
@@ -86,6 +106,9 @@ public class MainView extends JFrame {
 		menu.add(birdGame);
 		
 		JButton plantGame = new JButton("Plant Game");
+		plantGame.setSize(400,600);
+		plantGame.setLocation(940,200);
+		plantGame.setBackground(Color.GREEN);
 		plantGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addPlntGame();
@@ -106,17 +129,21 @@ public class MainView extends JFrame {
 		});
 		menu.add(scienceGame);
 		**/
-		JButton bossFight1 = new JButton("Boss Fight");
-		bossFight1.addActionListener(new ActionListener() {
+		JButton scientist = new JButton("Scientist Game");
+		scientist.setSize(400,600);
+		scientist.setLocation(100,200);
+		scientist.setBackground(Color.BLUE);
+		scientist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addBossFight1();
 				layeredPane.setLayer(menu, 0);
-				layeredPane.setLayer(bf1view, 1);
+				layeredPane.setLayer(scientistview, 1);
 				//game1 = false;
 			}
 		});
-		menu.add(bossFight1);
-		
+		menu.add(scientist);
+		revalidate();
+		repaint();
 		layeredPane.setVisible(true);
     	
     }
@@ -130,6 +157,8 @@ public class MainView extends JFrame {
     	flyView.setBounds(0, 0, 1440, 900);
     	layeredPane.setLayer(flyView, 0);
     	layeredPane.add(flyView);
+    	game.start=true;
+    	
     	start=true;
     	flyView = game.flyGameViewer;
     	flyView.setLayout(null);

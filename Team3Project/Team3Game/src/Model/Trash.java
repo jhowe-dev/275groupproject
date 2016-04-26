@@ -28,7 +28,7 @@ public class Trash extends Character {
 		x-=10;
 	}
 	public boolean isGrabbed(int mouseX, int mouseY){
-		return(x<=mouseX&&mouseX<=getXAdjusted()&&y<=mouseY&&mouseY<=getYAdjusted());
+		return(x <= mouseX && mouseX <= getXAdjusted() && y <= mouseY && mouseY <= getYAdjusted());
 	}
 	
 }
