@@ -9,7 +9,7 @@ public abstract class Hero extends Character{
 		this.health = health;
 	}
 	public void decrementHealth(int decrement) {
-		this.health -= decrement;
+		this.health = this.health - decrement;
 	}
 	public int getHealth(){
 		return this.health;

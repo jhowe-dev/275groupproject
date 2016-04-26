@@ -2,15 +2,19 @@ package Controller;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Timer;
 
 import Model.Boss;
 import Model.CaptainEstuary;
+import Model.EmployeeHero;
+import view.BossFight1View;
 import view.BossFight2View;
 
 public class BossFight2Controller {
 	public BossFight2View view = new BossFight2View();
 	public Boss boss = new Boss(4, 5);
 	public CaptainEstuary hero = new CaptainEstuary(330, 450, 100);//will probably change all coordinates
+	private boolean clicked=false;
 	
 	//bad code starts right here
 	public static int imgw=100;//these need to be phased out by like, the alpha
@@ -21,48 +25,42 @@ public class BossFight2Controller {
 	public static double heightratio=screenheight/900;
 	
 	public BossFight2Controller(){//constructor
-		view.render();
 		view.addMouseListener(addMouse1());
 	}
 	public void OnTick(){
-		//I'm calling render() every time I change the caption, do I need to do this?
-		boolean playersTurn = true;
 		view.displayMessage("A trash monster appeared! It's your job to defend the estuary!");
-		view.render();
 		//TODO: pause then display next message
 		while(hero.getHealth()!=0){
+			while(!clicked){
+				view.displayMessage("Click to attack!");
+			}
+			try{
+				Thread.sleep(700);
+			}catch(InterruptedException e){
+				e.printStackTrace();
+			}
+			clicked = false;
 			try {
-				Thread.sleep(65);
+				view.displayMessage("The monster responds!");
+				//TODO: projectile animation
+				hero.decrementHealth(10);
+				view.BossAttacks(hero.getHealth());
+				Thread.sleep(600);
 				} 
 			catch (InterruptedException e) {
 				e.printStackTrace();
 				}
-			if (playersTurn == true){
-				view.displayMessage("Click to attack!");
-				view.render();
-				//TODO: pause and wait for a click here
-				//TODO: add water blast attack. need a different way to signal these
-				view.HeroPunches(boss.getHealth());
-				view.render();
-			}else{
-				view.displayMessage("The monster responds!");
-				//TODO: projectile animation
-				hero.decrementHealth(5);
-				view.BossAttacks(hero.getHealth());
-				view.render();
-			}
 			view.render();
-			playersTurn = !playersTurn;//switch turn
 		}
-		view.displayMessage("You won! The estuary is saved! ");
-		view.render();
+		view.displayMessage("You won! Great work, honorable DNREC Employee! ");
 	}
 	public MouseListener addMouse1(){
 		MouseListener ear = new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//shoot something at the boss
-				boss.decrementHealth(5);
+				clicked = true;
+				//TODO: pause and wait for a click here
+				boss.decrementHealth(20);
 				view.HeroPunches(boss.getHealth());
 			}
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}

@@ -8,6 +8,6 @@ public class CaptainEstuary extends Hero {
 		// TODO Auto-generated constructor stub
 	}
 	public void decrementHealth(int dec){
-		decrementHealth(dec);
+		super.decrementHealth(dec);
 	}
 }
