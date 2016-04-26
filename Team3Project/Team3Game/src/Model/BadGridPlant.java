@@ -7,10 +7,7 @@ public class BadGridPlant extends GamePlant{
 	
 	public BadGridPlant(String n, int x, int y)
 	{
-		super(false);
-		name = n;
-		this.x = x;
-		this.y = y;
+		super(n, x, y, false);
 	}
 	
 	public int getX(){
@@ -26,5 +23,10 @@ public class BadGridPlant extends GamePlant{
 	public void setX(int x){this.x = x;}
 	public void setY(int y){this.y = y;}
 	public void setName(String n){name = n;}
+	
+	public boolean getCanGrow()
+	{
+		return true;
+	}
 	
 }

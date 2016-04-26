@@ -1,8 +1,8 @@
 package Model;
 
 public class GoodGridPlant extends GamePlant{
-	public GoodGridPlant()
+	public GoodGridPlant(String name,int x, int y)
 	{
-		super(false);
+		super(name, x, y, false);
 	}
 }
