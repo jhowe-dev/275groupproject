@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -50,6 +51,28 @@ public class GridGameView extends View {
 	}
 	public void updateTurn(String text){
 		caption.setText(text);
+	}
+	public void addPlantButtonListen(MouseListener listen, int index){
+		switch(index){
+		case 0:
+			native1.addMouseListener(listen);
+			break;
+		case 1:
+			native2.addMouseListener(listen);
+			break;
+		case 2:
+			native3.addMouseListener(listen);
+			break;
+		case 3:
+			invasive1.addMouseListener(listen);
+			break;
+		case 4:
+			invasive2.addMouseListener(listen);
+			break;
+		case 5:
+			invasive3.addMouseListener(listen);
+			break;
+		}
 	}
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
