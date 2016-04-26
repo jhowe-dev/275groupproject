@@ -29,7 +29,7 @@ public class FlyGameController {
 	private int life=7;
 	private int time=61;
 	private int counter=0;
-	public boolean start=true;
+	public volatile boolean start=false;
 	private ArrayList<Boolean> notHeldList=new ArrayList<Boolean>();
 	public static int imgw=100;
 	public static int imgh=100;
@@ -50,7 +50,9 @@ public class FlyGameController {
 		flyGameViewer.addMouseMotionListener(addMouseMotion());
 	}
 	public void onTick(){
-		timer.setInitialDelay(0);
+		
+        while(!start){}
+        timer.setInitialDelay(0);
         timer.start();
 		while(time>0&&life>0){
 			try {
@@ -95,6 +97,7 @@ public class FlyGameController {
 			System.out.println("You lose");
 			//System.exit(0);
 		}
+		
 	
 	}
 	public MouseListener addMouseListener(){

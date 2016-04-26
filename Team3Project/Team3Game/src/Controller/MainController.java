@@ -11,13 +11,16 @@ public class MainController {
 		FlyGameController flygame = new FlyGameController();
 		SelectGameController plntGame = new SelectGameController();
 		BossFight1Controller bf1 = new BossFight1Controller();
-		MainView frame = new MainView(); 
-		frame.addMenu(flygame, plntGame, bf1);
+		ScientistGameController sgame=new ScientistGameController();
+		GridGameController ggame=new GridGameController();
+		MainView frame = new MainView(bf1); 
+		frame.addMenu(flygame, plntGame, sgame);
 		frame.setVisible(true);
+		flygame.onTick();
 		bf1.OnTick();
+		flygame.onTick();
 		frame.repaint();
 		frame.revalidate();
-		
 //		frame.dispose();
 //		frame = new MainView();
 //		frame.addMenu(flygame, plntGame, bf1);
