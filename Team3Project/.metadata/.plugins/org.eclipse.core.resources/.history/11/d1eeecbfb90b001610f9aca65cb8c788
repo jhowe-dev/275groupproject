@@ -36,8 +36,6 @@ public class SelectGameView extends View {
 		//add(health);
 		setSize((int)(1440*widthRatio),(int)(900*heightRatio));
 		setVisible(true);	
-		revalidate();
-		repaint();
 	}
 	public void displayMessage(String message){
 		JOptionPane.showMessageDialog(null, message);

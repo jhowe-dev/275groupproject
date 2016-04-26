@@ -237,7 +237,7 @@ public class MainView extends JFrame {
     	selectView.setLayout(null);
     	selectView.setSize((int) frameHeight, (int) frameWidth);
     	selectView.setBounds(0, 0,  1440,  900);
-    	layeredPane.setLayer(selectView, 100);
+    	layeredPane.setLayer(selectView, 0);
     	layeredPane.add(selectView);
     	setVisible(true);
     	repaint();
@@ -249,7 +249,7 @@ public class MainView extends JFrame {
     	gridView.setLayout(null);
     	gridView.setSize((int) frameHeight, (int) frameWidth);
     	gridView.setBounds(0, 0,  1440,  900);
-    	layeredPane.setLayer(gridView, 100);
+    	layeredPane.setLayer(gridView, 0);
     	layeredPane.add(gridView);
     	setVisible(true);
     	repaint();

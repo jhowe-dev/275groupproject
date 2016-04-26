@@ -17,7 +17,7 @@ public class GamePlant {
 	public String getName(){return name;}
 	public boolean getGood()
 	{
-		return !good;
+		return good;
 	}
 	public int getX()
 	{

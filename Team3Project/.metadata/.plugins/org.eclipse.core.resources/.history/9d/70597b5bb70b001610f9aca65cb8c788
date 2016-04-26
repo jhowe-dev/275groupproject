@@ -41,7 +41,7 @@ public class BossFight1Controller {
 			try {
 				view.displayMessage("The monster responds!");
 				//TODO: projectile animation
-				hero.decrementHealth(100);
+				hero.decrementHealth(25);
 				view.BossAttacks(hero.getHealth());
 				Thread.sleep(600);
 				} 

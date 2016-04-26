@@ -105,7 +105,11 @@ public class SelectGameController{
 	
 	public void onTick(){
 		System.out.println(gameOver);
-		while(!gameOver){	
+		if(gameOver){
+			return;
+		}
+		else{
+				
 			view.render();
 		}
 	}
