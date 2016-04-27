@@ -12,7 +12,7 @@ public class GameEngine {
 		ScientistGameController sgame=new ScientistGameController();
 		BossFight2Controller bf2 = new BossFight2Controller();
 		
-	//	MainView frame = new MainView(bf1); 
+		//MainView frame = new MainView(bf1); 
 		MainController con = new MainController(bf1, flygame, plntGame, sgame, ggame, bf2);
 		MainView frame = con.frame;
 		try {
