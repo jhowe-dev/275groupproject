@@ -21,7 +21,7 @@ public class GameEngine {
 		catch (InterruptedException e) {
 			e.printStackTrace();
 			}
-		//frame.addMenu(flygame, plntGame, sgame);
+		// frame.addMenu(flygame, plntGame, sgame);
 		if (con.flyStart) {
 			flygame.onTick();
 			//flygame = new FlyGameController();
