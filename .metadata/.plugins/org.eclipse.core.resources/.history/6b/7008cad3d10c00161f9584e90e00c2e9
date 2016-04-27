@@ -13,7 +13,6 @@ public class BossFight1Controller {
 	public BossFight1View view = new BossFight1View();
 	public BossFight1 model = new BossFight1();
 	private boolean clicked=false;
-	private boolean yourTurn = true;
 	
 	//bad code starts right here
 	public static int imgw=100;//these need to be phased out by like, the alpha
@@ -40,13 +39,10 @@ public class BossFight1Controller {
 			}
 			clicked = false;
 			try {
-				if(model.boss.getHealth()>0){
-					view.displayMessage("The monster responds!");
-					//TODO: projectile animation
-					model.hero.decrementHealth(100);
-					view.BossAttacks(model.hero.getHealth());
-					yourTurn = true;
-				}
+				view.displayMessage("The monster responds!");
+				//TODO: projectile animation
+				model.hero.decrementHealth(100);
+				view.BossAttacks(model.hero.getHealth());
 				Thread.sleep(600);
 				} 
 			catch (InterruptedException e) {
@@ -62,7 +58,7 @@ public class BossFight1Controller {
 				if(yourTurn){
 					clicked = true;
 					//TODO: pause and wait for a click here
-					model.boss.decrementHealth(10);
+					model.boss.decrementHealth(20);
 					view.HeroPunches(model.boss.getHealth());
 					yourTurn = false;
 				}

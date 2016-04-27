@@ -62,7 +62,7 @@ public class BossFight1Controller {
 				if(yourTurn){
 					clicked = true;
 					//TODO: pause and wait for a click here
-					model.boss.decrementHealth(10);
+					model.boss.decrementHealth(20);
 					view.HeroPunches(model.boss.getHealth());
 					yourTurn = false;
 				}

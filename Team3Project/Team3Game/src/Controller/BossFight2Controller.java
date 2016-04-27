@@ -16,6 +16,7 @@ public class BossFight2Controller {
 	public BossFight2View view = new BossFight2View();
 	public BossFight2 model = new BossFight2();
 	private boolean clicked=false;
+	private boolean yourTurn = true;
 	
 	//bad code starts right here
 	public static int imgw=100;//these need to be phased out by like, the alpha
@@ -48,6 +49,7 @@ public class BossFight2Controller {
 					//TODO: projectile animation
 					model.hero.decrementHealth(10);
 					view.BossAttacks(model.hero.getHealth());
+					yourTurn = true;
 				}
 				Thread.sleep(600);
 				} 
@@ -61,10 +63,13 @@ public class BossFight2Controller {
 		MouseListener ear = new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				clicked = true;
-				//TODO: pause and wait for a click here
-				model.boss.decrementHealth(20);
-				view.HeroPunches(model.boss.getHealth());
+				if(yourTurn){
+					clicked = true;
+					//TODO: pause and wait for a click here
+					model.boss.decrementHealth(20);
+					view.HeroPunches(model.boss.getHealth());
+					yourTurn = false;
+				}
 			}
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}
 		};

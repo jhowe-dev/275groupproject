@@ -43,7 +43,7 @@ public class BossFight1Controller {
 				if(model.boss.getHealth()>0){
 					view.displayMessage("The monster responds!");
 					//TODO: projectile animation
-					model.hero.decrementHealth(100);
+					model.hero.decrementHealth(10);
 					view.BossAttacks(model.hero.getHealth());
 					yourTurn = true;
 				}
@@ -62,7 +62,7 @@ public class BossFight1Controller {
 				if(yourTurn){
 					clicked = true;
 					//TODO: pause and wait for a click here
-					model.boss.decrementHealth(10);
+					model.boss.decrementHealth(20);
 					view.HeroPunches(model.boss.getHealth());
 					yourTurn = false;
 				}
