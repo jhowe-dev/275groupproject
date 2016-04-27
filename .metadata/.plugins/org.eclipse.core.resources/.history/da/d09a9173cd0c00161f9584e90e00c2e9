@@ -21,48 +21,48 @@ public class GameEngine {
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-//		 frame.addMenu(flygame, plntGame, sgame);
-//		if (con.flyStart) {
-//			flygame.onTick();
-//			//flygame = new FlyGameController();
-//			con.flyStart = false;
-//			frame.showMenu();
-//		}
+		// frame.addMenu(flygame, plntGame, sgame);
+		if (con.flyStart) {
+			flygame.onTick();
+			//flygame = new FlyGameController();
+			con.flyStart = false;
+			frame.showMenu();
+		}
 //		try {
 //			Thread.sleep(3000);
 //			} 
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-//		if (frame.plantGameStart) {
-//			plntGame.onTick();
-//			frame.plantGameStart = false;
-//			frame.showMenu();
-//		}
+		if (frame.plantGameStart) {
+			plntGame.onTick();
+			frame.plantGameStart = false;
+			frame.showMenu();
+		}
 //		try {
 //			Thread.sleep(3000);
 //			} 
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-//		if (frame.gridGameStart) {
-//			ggame.onTick();
-//			frame.gridGameStart = false;
-//			frame.showMenu();
-//		}
+		if (frame.gridGameStart) {
+			ggame.onTick();
+			frame.gridGameStart = false;
+			frame.showMenu();
+		}
 //		try {
 //			Thread.sleep(3000);
 //			} 
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-//		if (frame.scienceGameStart) {
-//			sgame.onTick();
-//			frame.scienceGameStart = false;
-//			frame.showMenu();
-//		}
+		if (frame.scienceGameStart) {
+			sgame.onTick();
+			frame.scienceGameStart = false;
+			frame.showMenu();
+		}
 //		try {
-//			Thread.sleep(300);
+//			Thread.sleep(3000);
 //			} 
 //		catch (InterruptedException e) {
 //			e.printStackTrace();

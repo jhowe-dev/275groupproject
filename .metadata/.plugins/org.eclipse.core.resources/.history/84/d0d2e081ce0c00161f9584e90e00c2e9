@@ -28,7 +28,6 @@ public class BossFight2Controller {
 		view.addMouseListener(addMouse1());
 	}
 	public void OnTick(){
-		System.out.println("hi");
 		view.displayMessage("A trash monster appeared! It's your job to defend the estuary!");
 		//TODO: pause then display next message
 		while(boss.getHealth()!=0){

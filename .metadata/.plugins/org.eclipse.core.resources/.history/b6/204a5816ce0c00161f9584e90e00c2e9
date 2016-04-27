@@ -21,7 +21,7 @@ public class GameEngine {
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-//		 frame.addMenu(flygame, plntGame, sgame);
+		// frame.addMenu(flygame, plntGame, sgame);
 //		if (con.flyStart) {
 //			flygame.onTick();
 //			//flygame = new FlyGameController();
@@ -61,15 +61,15 @@ public class GameEngine {
 //			frame.scienceGameStart = false;
 //			frame.showMenu();
 //		}
-//		try {
-//			Thread.sleep(300);
-//			} 
-//		catch (InterruptedException e) {
-//			e.printStackTrace();
-//			}
+		try {
+			Thread.sleep(30);
+			} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			}
 		if (frame.finalBossStart) {
 			bf2.OnTick();
-			frame.finalBossStart = false;
+			frame.finalBossStart = true;
 		}
 	}
 
