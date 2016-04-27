@@ -43,12 +43,10 @@ public class BossFight2Controller {
 			}
 			clicked = false;
 			try {
-				if(model.boss.getHealth()>0){
-					view.displayMessage("The monster responds!");
-					//TODO: projectile animation
-					model.hero.decrementHealth(10);
-					view.BossAttacks(model.hero.getHealth());
-				}
+				view.displayMessage("The monster responds!");
+				//TODO: projectile animation
+				model.hero.decrementHealth(10);
+				view.BossAttacks(model.hero.getHealth());
 				Thread.sleep(600);
 				} 
 			catch (InterruptedException e) {
