@@ -15,8 +15,6 @@ public class GameEngine {
 		//MainView frame = new MainView(bf1); 
 		MainController con = new MainController(bf1, flygame, plntGame, sgame, ggame, bf2);
 		MainView frame = con.frame;
-		boolean finale = false;
-		while(!finale){
 //		try {
 //			Thread.sleep(3000);
 //			} 
@@ -69,12 +67,10 @@ public class GameEngine {
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-		System.out.println("initiate bf2");
 		if (frame.finalBossStart) {
-			System.out.println("started");
+			System.out.println("fuck");
 			bf2.OnTick();
 			frame.finalBossStart = false;
-		}
 		}
 	}
 

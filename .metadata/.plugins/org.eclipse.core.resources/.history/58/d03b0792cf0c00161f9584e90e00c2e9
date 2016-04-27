@@ -69,9 +69,8 @@ public class GameEngine {
 //		catch (InterruptedException e) {
 //			e.printStackTrace();
 //			}
-		System.out.println("initiate bf2");
 		if (frame.finalBossStart) {
-			System.out.println("started");
+			System.out.println("fuck");
 			bf2.OnTick();
 			frame.finalBossStart = false;
 		}

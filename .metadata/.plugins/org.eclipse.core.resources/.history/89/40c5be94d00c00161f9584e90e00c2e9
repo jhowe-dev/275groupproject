@@ -28,7 +28,7 @@ public class BossFight1Controller {
 	public void OnTick(){
 		view.displayMessage("A trash monster appeared! It's your job to defend the estuary!");
 		//TODO: pause then display next message
-		while(model.hero.getHealth()!=0){
+		while(hero.getHealth()!=0){
 			while(!clicked){
 				view.displayMessage("Click to attack!");
 			}
@@ -41,8 +41,8 @@ public class BossFight1Controller {
 			try {
 				view.displayMessage("The monster responds!");
 				//TODO: projectile animation
-				model.hero.decrementHealth(100);
-				view.BossAttacks(model.hero.getHealth());
+				hero.decrementHealth(100);
+				view.BossAttacks(hero.getHealth());
 				Thread.sleep(600);
 				} 
 			catch (InterruptedException e) {
@@ -57,8 +57,8 @@ public class BossFight1Controller {
 			public void mouseClicked(MouseEvent arg0) {
 				clicked = true;
 				//TODO: pause and wait for a click here
-				model.boss.decrementHealth(5);
-				view.HeroPunches(model.boss.getHealth());
+				boss.decrementHealth(5);
+				view.HeroPunches(boss.getHealth());
 			}
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}
 		};

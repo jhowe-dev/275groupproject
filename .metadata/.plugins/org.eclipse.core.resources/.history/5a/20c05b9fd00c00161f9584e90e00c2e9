@@ -58,7 +58,7 @@ public class BossFight1Controller {
 				clicked = true;
 				//TODO: pause and wait for a click here
 				model.boss.decrementHealth(5);
-				view.HeroPunches(model.boss.getHealth());
+				view.HeroPunches(boss.getHealth());
 			}
 			@Override public void mouseEntered(MouseEvent e) {}@Override public void mouseExited(MouseEvent e) {}@Override public void mousePressed(MouseEvent e) {}@Override public void mouseReleased(MouseEvent e) {}
 		};
