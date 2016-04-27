@@ -476,7 +476,7 @@ public class ScientistGameController {
 				fish=false;
 				trash=!trash;
 				liquid=false;
-				time=0;
+				
 			}
 
 			@Override

@@ -26,7 +26,7 @@ public class FlyGameController {
 	public static double heightratio=screenheight/900;
 	private int length=0;
 	private boolean addTrash=false;
-	private int life=1;
+	private int life=7;
 	private int time=61;
 	private int counter=0;
 	public volatile boolean start=false;
