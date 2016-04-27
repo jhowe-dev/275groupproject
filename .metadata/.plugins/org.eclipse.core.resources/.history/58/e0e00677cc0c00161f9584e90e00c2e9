@@ -30,7 +30,7 @@ public class BossFight2Controller {
 	public void OnTick(){
 		view.displayMessage("A trash monster appeared! It's your job to defend the estuary!");
 		//TODO: pause then display next message
-		while(boss.getHealth()!=0){
+		while(hero.getHealth()!=0){
 			while(!clicked){
 				view.displayMessage("Click to attack!");
 			}
