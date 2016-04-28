@@ -1,11 +1,10 @@
-package flyGame;
+package general;
 
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import general.Game;
 
 public class Clocker extends JLabel {
 	

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import general.Clocker;
 import general.Game;
+import general.TrashView;
 import general.View;
 
 public class FlyGameView extends View {

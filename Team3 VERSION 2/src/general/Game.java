@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 public class Game {
 	private boolean isOver;
 	private int health;
-	private int score;
+	protected int score;
 	protected int time;
 	private GameDifficulty difficulty;
 	private boolean hasPlantFriend;
@@ -44,6 +44,22 @@ public class Game {
 	
 	public void setTime(int t) {
 		this.time = t;
+	}
+	
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public int getScore() {
+		return this.score;
+	}
+	
+	public void incrementScore() {
+		this.score++;
+	}
+	
+	public void decrementScore() {
+		this.score--;
 	}
 }
 

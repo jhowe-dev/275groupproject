@@ -1,4 +1,4 @@
-package flyGame;
+package general;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,8 +10,6 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.border.LineBorder;
-
-import general.Game;
 
 public class TrashView extends JComponent {
 	private volatile int x;
